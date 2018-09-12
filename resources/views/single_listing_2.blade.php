@@ -139,18 +139,12 @@
                 <div class="page-title">
                     <div class="container clearfix">
                         <div class="float-left float-xs-none">
-                            <h1>Furniture For Sale
+                            <h1>{{$service->service_title}}
                                 <span class="tag">Offer</span>
                             </h1>
                             <h4 class="location">
-                                <a href="#">Manhattan, NY</a>
+                            <a href="#">{{$service->district->name}}, </a>
                             </h4>
-                        </div>
-                        <div class="float-right float-xs-none price">
-                            <div class="number">$80</div>
-                            <div class="id opacity-50">
-                                <strong>ID: </strong>3479
-                            </div>
                         </div>
                     </div>
                     <!--end container-->
@@ -170,36 +164,7 @@
             <section class="block">
                 <div class="container">
                     <!--Gallery Carousel-->
-                    <section>
-                        <div class="gallery-carousel owl-carousel">
-                            <img src="assets/img/image-20.jpg" alt="" data-hash="1">
-                            <img src="assets/img/image-01.jpg" alt="" data-hash="2">
-                            <img src="assets/img/image-21.jpg" alt="" data-hash="3">
-                            <img src="assets/img/image-22.jpg" alt="" data-hash="4">
-                            <img src="assets/img/image-23.jpg" alt="" data-hash="5">
-                            <img src="assets/img/image-14.jpg" alt="" data-hash="6">
-                        </div>
-                        <div class="gallery-carousel-thumbs owl-carousel">
-                            <a href="#1" class="owl-thumb active-thumb background-image">
-                                <img src="assets/img/image-20.jpg" alt="">
-                            </a>
-                            <a href="#2" class="owl-thumb background-image">
-                                <img src="assets/img/image-01.jpg" alt="">
-                            </a>
-                            <a href="#3" class="owl-thumb background-image">
-                                <img src="assets/img/image-21.jpg" alt="">
-                            </a>
-                            <a href="#4" class="owl-thumb background-image">
-                                <img src="assets/img/image-22.jpg" alt="">
-                            </a>
-                            <a href="#5" class="owl-thumb background-image">
-                                <img src="assets/img/image-23.jpg" alt="">
-                            </a>
-                            <a href="#6" class="owl-thumb background-image">
-                                <img src="assets/img/image-14.jpg" alt="">
-                            </a>
-                        </div>
-                    </section>
+            
                     <!--end Gallery Carousel-->
                     <div class="row flex-column-reverse flex-md-row">
                         <!--============ Listing Detail =============================================================-->
@@ -207,13 +172,7 @@
                             <!--Description-->
                             <section>
                                 <h2>Description</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec tincidunt arcu, sit
-                                    amet fermentum sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                                    per inceptos himenaeos. Vestibulum tincidunt, sapien sagittis sollicitudin dapibus,
-                                    risus mi euismod elit, in dictum justo lacus sit amet dui. Sed faucibus vitae nisl
-                                    at dignissim.
-                                </p>
+                            <p>{{$service->service_desc}}</p>
                             </section>
                             <!--end Description-->
                             <!--Details-->
@@ -221,43 +180,24 @@
                                 <h2>Details</h2>
                                 <dl class="columns-3">
                                     <dt>Date Added</dt>
-                                    <dd>05.04.2017</dd>
+                                    <dd>{{$service->created_at}}</dd>
                                     <dt>Type</dt>
                                     <dd>Offer</dd>
-                                    <dt>Status</dt>
-                                    <dd>Used</dd>
-                                    <dt>First Owner</dt>
-                                    <dd>Yes</dd>
-                                    <dt>Material</dt>
-                                    <dd>Wood, Leather</dd>
-                                    <dt>Color</dt>
-                                    <dd>White, Grey</dd>
-                                    <dt>Height</dt>
-                                    <dd>47cm</dd>
-                                    <dt>Width</dt>
-                                    <dd>203cm</dd>
-                                    <dt>Length</dt>
-                                    <dd>54cm</dd>
+                                    <dt>Education</dt>
+                                    <dd>{{$service->edu_level}}</dd>
+                                    <dt>Category</dt>
+                                    <dd>{{$service->emp_type}}</dd>
+                                    <dt>experience</dt>
+                                    <dd>{{$service->years_exp}}</dd>
+                                    <dt>Phone</dt>
+                                    <dd>{{$service->phone}}</dd>
+                                    
                                 </dl>
                             </section>
                             <!--end Details-->
                             <!--Location-->
-                            <section>
-                                <h2>Location</h2>
-                                <div class="map height-300px" id="map-small"></div>
-                            </section>
                             <!--end Location-->
                             <!--Features-->
-                            <section>
-                                <h2>Features</h2>
-                                <ul class="features-checkboxes columns-3">
-                                    <li>Quality Wood</li>
-                                    <li>Brushed Alluminium Handles</li>
-                                    <li>Foam mattress</li>
-                                    <li>Detachable chaise section</li>
-                                    <li>3 fold pull out mechanism</li>
-                                </ul>
-                            </section>
                             <!--end Features-->
 
                             <hr>
@@ -433,7 +373,7 @@
                                             <dt>Phone</dt>
                                             <dd>830-247-0930</dd>
                                             <dt>Email</dt>
-                                            <dd>hijane@example.com</dd>
+                                            <dd>{{$service->user_id}}</dd>
                                         </dl>
                                         <!--end author-->
                                         <form class="form email">

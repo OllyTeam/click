@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\district;
 use App\province;
+use App\sector;
 
-class DistrictController extends Controller
+class OfferController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +16,9 @@ class DistrictController extends Controller
      */
     public function index()
     {
-
-        //return districts view page
-        $districts = district::all();
-        return view('district.index')->with('districts' , $districts);
-        
+        $dis = district::all();
+        $pro = province::all();
+        return view('offer.index',['district'=>$dis, 'province'=>$pro]);
     }
 
     /**
@@ -30,13 +29,6 @@ class DistrictController extends Controller
     public function create()
     {
         //
-
-        // $pro = province::all();
-        //     return view('district.create')->with($pro,'pro');
-              //return districts view page
-        $pro = province::all();
-        return view('district.create')->with('pro' , $pro);
-        
     }
 
     /**
@@ -47,13 +39,7 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $save = new District();
-        $save->province_id = $request->input('province');
-        $save->name = $request->input('name');
-        $save->save();
-
-        return redirect('/district');
+        dd($request);
     }
 
     /**
@@ -99,12 +85,5 @@ class DistrictController extends Controller
     public function destroy($id)
     {
         //
-
-       
-            $post = district::find($id);
-            $post->delete();
-    
-            return redirect('district');
-        
     }
 }

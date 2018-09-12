@@ -3,13 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\category;
+use App\district;
+use App\s_listing;
 class PostsController extends Controller
 {
     //
 
     public function home() {
-        return view('index');
+
+        $category = category::all(); 
+
+        $district = district::all();
+
+        $service = s_listing::all();
+
+        $data = array(
+            ['category' => $category ],
+            ['district' => $district ],
+            ['service' => $service ]
+         );
+        //dd($data);
+        return view('index',['category'=>$category,'district'=>$district,'service'=>$service]);
     }
     
     public function contact() {

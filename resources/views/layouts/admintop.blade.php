@@ -10,23 +10,13 @@
       <link rel="stylesheet" href=" {{asset('assets/css/selectize.css')}}" type="text/css">
       <link rel="stylesheet" href=" {{asset('assets/css/style.css')}}">
       <link rel="stylesheet" href=" {{asset('assets/css/user.css')}}">
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script> 
-      <!-- <script type="text/javascript" src="{{asset('js/app.js')}}"></script> -->
-       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
-      
       <title>The Link360 - Job Offer & Service Listing</title>
    </head>
-
    <body>
       <div class="page home-page">
-      
       <header class="hero">
       <div class="hero-wrapper">
-
+      <!--============ Secondary Navigation ===============================================================-->
       <div class="secondary-navigation">
          <div class="container">
             <ul class="left">
@@ -84,8 +74,6 @@
                   </div>
                </div>
             </nav>
-            {{-- </ul> --}}
-            <!--end right-->
          </div>
          <!--end container-->
       </div>
@@ -102,21 +90,22 @@
                   <!--Main navigation list-->
                   <ul class="navbar-nav">
                      <li class="nav-item active">
-                        <a class="nav-link" href=" {{url('/')}}">Home</a>
+                        <a class="nav-link" href=" {{url('/home')}}">Home</a>
+                     </li>
+                     <li class="nav-item has-child">
+                        <a class="nav-link" href="#">Categories</a>
+                        <!-- 1st level -->
+                     </li>
+                     <li class="nav-item has-child">
+                        <a class="nav-link" href="#">How it works</a>
+                        <!-- 2nd level -->
                      </li>
                      <li class="nav-item has-child">
                         <a class="nav-link" href="#">About Us</a>
                         <!--1st level -->
                      </li>
-                     <li class="nav-item has-child">
-                        <a class="nav-link" href="#">How it works</a>
-                        <!--1st level -->
-                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="{{url('contact')}}">Contact</a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="{{url('/login')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Ad</a>
                      </li>
                   </ul>
                   <!--Main navigation list-->

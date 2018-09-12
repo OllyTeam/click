@@ -23,10 +23,10 @@
                     <a class="nav-link  icon" href="{{url('/province')}}">
                         <i class="fa fa-heart"></i>Province
                     </a>
-                <a class="nav-link  active icon" href="{{url('/district')}}">
+                <a class="nav-link   icon" href="{{url('/district')}}">
                         <i class="fa fa-star"></i>district
                     </a>
-                    <a class="nav-link icon" href="{{url('/sector')}}">
+                    <a class="nav-link active icon" href="{{url('/sector')}}">
                         <i class="fa fa-recycle"></i>Sector
                     </a>
                 <a class="nav-link icon" href="{{url('/category')}}">
@@ -38,27 +38,28 @@
             <div class="col-md-9">
                <div class="row">
                   <div class="col-md-8">
-                    <a href="{{ url ('district/create')}}" class="btn btn-primary">Add New District</a><br>
+                    <a href="{{ url ('sector/create')}}" class="btn btn-primary">Add New Sector</a>
+                    <br>
                                                 <br>
                      <span class="col-md-4" style="font-size:18px;">
-                        @if(count($districts) > 0)
+                        @if(count($sectors) > 0)
                         <table class="table">
                            <thead class="thead-dark">
                               <tr>
                                  <th scope="col">No</th>
-                                 <th scope="col">Province</th>
                                  <th scope="col">District</th>
+                                 <th scope="col">Sector</th>
                                  <th scope="col">Action</th>
                               </tr>
                            </thead>
                            <tbody>
-                              @foreach($districts as $index => $district)
+                              @foreach($sectors as $index => $sector)
                               <tr>
                                  <th scope="row">{{$index+1}}</th>
-                                 <td>{{$district->province->name}}</td>
-                                 <td>{{$district->name}}</td>
+                                 <td>{{$sector->district->name}}</td>
+                                 <td>{{$sector->name}}</td>
                                  <td>
-                                    {!! Form::open(['action'=>['DistrictController@destroy', $district->id ],'method'=>'POST','class'=>'pull-right']) !!} 
+                                    {!! Form::open(['action'=>['SectorController@destroy', $sector->id ],'method'=>'POST']) !!} 
                                     {{ Form::hidden('_method','DELETE') }} 
                                     {{ Form::submit('Delete',['class'=>'btn btn-danger']) }}
                                     {!!Form::close() !!}

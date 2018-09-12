@@ -1,4 +1,4 @@
-@include('layouts.top')
+@include('layouts.admintop')
 
                 <!--============ Hero Form ==========================================================================-->
                 <div class="collapse" id="collapseMainSearchForm">

@@ -1,6 +1,10 @@
 <?php
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\province;
+use App\s_listing;
+use App\user;
+use App\district;
 /*
 |__________________________________________________________________________
 | Web Routes
@@ -12,74 +16,51 @@ use App\province;
 |
 */
 
-// Route::resource('/register','PagesController');
 
-// Route::get('/', 'PostsController@home');
 
-// Route::get('/submit', 'PostsController@submit');
 
-// Route::get('/contact', 'PostsController@contact');
+Route::get('/register','PagesController@register');
 
-// Route::get('/change_password', 'PostsController@change_password');
+Route::get('/', 'PostsController@home');
 
-// Route::get('/edit_ad', 'PostsController@edit_ad');
 
-// Route::get('/elements', 'PostsController@elements');
-
-// Route::get('/faq', 'PostsController@faq');
-
-// Route::get('/image_header', 'PostsController@image_header');
-
-// Route::get('/sign_in', 'PagesController@index');
-
-// Route::get('/my_ads', 'PostsController@my_ads');
-
-// Route::get('/my_profile', 'PostsController@y_profile');
-
-// Route::get('/listing_grid_4_items', 'PostsController@listing_grid_4_item');
-
-// Route::get('/listing_grid_compact_full_width', 'PostsController@listing_grid_compact_full_width');
-
-// Route::get('/listing_grid_compact_sidebar', 'PostsController@listing_grid_compact_sidebar');
-
-// Route::get('/listing_grid_full_width', 'PostsController@listing_grid_full_width');
-
-// Route::get('/listing_grid_sidebar', 'PostsController@listing_grid_sidebar');
-
-// Route::get('/listing_list_compact_full_width', 'PostsController@listing_list_compact_full_width');
-
-// Route::get('/listing_list_compact_sidebar', 'PostsController@listing_list_compact_sidebar');
-
-// Route::get('/listing_list_full_width', 'PostsController@listing_list_full_width');
-
-// Route::get('/listing_list_sidebar', 'PostsController@listing_list_sideba');
-
-// Route::get('/old', 'PostsController@old');
-
-// Route::get('/pricing', 'PostsController@pricing');
-
-// Route::get('/seller_detail_1', 'PostsController@seller_detail_1');
-
-// Route::get('/sellers', 'PostsController@sellers');
-
-// Route::get('/single_listing_2', 'PostsController@single_listing_2');
-
-// Route::get('/sold_items', 'PostsController@sold_items');
-
-// Route::get('/register', 'PostsController@register');
-
-// Route::resource('posts','PagesController');
+Route::resource('posts','PagesController');
 
 Route::get('/dashboard',function(){
 
     return view('dashboard');
 });
+
+Route::get('/single/{id}',function($id){
+
+    $service = s_listing::find($id);
+
+    return view('single_listing_2')->with('service',$service);
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::resource('/province','ProvinceController');
-Route::resource('/district','DistrictController');
+Route::resource('/province','ProvinceController');  //this is the route for all province
+Route::resource('/district','DistrictController');  //this is the route for all district
+Route::resource('/category','CategoryController'); //this is the route for all category
+Route::resource('/offer','OfferController'); // this is the Route for all offers
+Route::get('/contact','PostsController@contact');
+Route::resource('/sector','SectorController');
 
-//Auth::routes();
+Route::post('/dynamicdata.fetch',function(Request $request){
 
-//Route::get('/my_profile', 'HomeController@index');
+	$select = $request->get('select');
+	$value = $request->get('value');
+	$dependent = $request->get('dependent');
+	$data  = district::where('province_id',$value)->get();
+
+	// $output = '<option value"">Select '.ucfirst($dependent).'</option>'; 
+	// foreach ($data as $row) {
+	// 	$output .= '<option value"'.$row->id.'">'.ucfirst($row->name).'</option>'; 
+
+	// }
+	// echo $output;
+
+	return Response::json($data);
+
+})->name('dynamicdata.fetch');

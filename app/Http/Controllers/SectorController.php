@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\sector;
 use App\district;
-use App\province;
 
-class DistrictController extends Controller
+class SectorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-
-        //return districts view page
-        $districts = district::all();
-        return view('district.index')->with('districts' , $districts);
-        
+        $sectors = sector::all();
+        return view('sector.index',compact('sectors'));
     }
 
     /**
@@ -29,14 +26,8 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
-
-        // $pro = province::all();
-        //     return view('district.create')->with($pro,'pro');
-              //return districts view page
-        $pro = province::all();
-        return view('district.create')->with('pro' , $pro);
-        
+        $districts = district::all();
+        return view('sector.create')->with('districts',$districts);
     }
 
     /**
@@ -47,13 +38,13 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $save = new District();
-        $save->province_id = $request->input('province');
-        $save->name = $request->input('name');
-        $save->save();
+        $id = $request->input('district');
+        $sector = new sector;
+        $sector->district_id = $id;
+        $sector->name=$request->input('name');
+        $sector->save();
 
-        return redirect('/district');
+        return redirect('/sector');
     }
 
     /**
@@ -98,13 +89,10 @@ class DistrictController extends Controller
      */
     public function destroy($id)
     {
-        //
 
-       
-            $post = district::find($id);
-            $post->delete();
-    
-            return redirect('district');
-        
+        $sector = sector::find($id);
+        $sector->delete();
+
+        return redirect('/sector');
     }
 }

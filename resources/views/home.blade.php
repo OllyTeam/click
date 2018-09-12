@@ -28,7 +28,7 @@
                         <ul class="left">
                             <li>
                             <span>
-                                <i class="fa fa-phone"></i> +(250) 789923505
+                                <i class="fa fa-phone"></i> +(250) 789923505jj
                             </span>
                             </li>
                         </ul>
@@ -946,11 +946,11 @@
                             <aside class="sidebar">
                                 <section>
                                     <h2></h2>
-																		<img src="assets/img/banner.jpg">
-																		<hr>
-																		<img src="assets/img/banner.jpg">
-																		<hr>
-																		<img src="assets/img/banner.jpg">
+                                    <img src="assets/img/banner.jpg">
+                                    <hr>
+                                    <img src="assets/img/banner.jpg">
+                                    <hr>
+                                    <img src="assets/img/banner.jpg">
 
                                 </section>
                             </aside>

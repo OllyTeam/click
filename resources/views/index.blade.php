@@ -14,11 +14,12 @@
                 <form class="hero-form form">
                     <div class="container">
                         <!--Main Form-->
+                    <form action="#">
                         <div class="main-search-form">
                             <div class="form-row">
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-2 col-sm-2">
                                     <div class="form-group">
-                                        <label for="what" class="col-form-label">What are you looking for?</label>
+                                        <label for="what" class="col-form-label">Search</label>
                                         <input name="keyword" type="text" class="form-control" id="what" placeholder="What are you looking for?">
                                     </div>
                                     <!--end form-group-->
@@ -26,19 +27,40 @@
                                 <!--end col-md-3-->
 
                                 <!--end col-md-3-->
-                                <div class="col-md-3 col-sm-3">
+                                <div class="col-md-2 col-sm-2">
                                     <div class="form-group">
                                         <label for="category" class="col-form-label">Category?</label>
                                         <select name="category" id="category" data-placeholder="Select Category">
-                                            <option value="">Select Category</option>
-                                            <option value="1">Computers</option>
-                                            <option value="2">Real Estate</option>
-                                            <option value="3">Cars & Motorcycles</option>
-                                            <option value="4">Furniture</option>
-                                            <option value="5">Pets & Animals</option>
+                                                <option value="">-</option>
+                                                    @foreach($category as $item)
+                                                        <option>{{$item->name}}</option>
+                                                    @endforeach
+                                            
                                         </select>
                                     </div>
                                     <!--end form-group-->
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                        <div class="form-group">
+                                            <label for="category" class="col-form-label">Type?</label>
+                                            <select name="category" id="category" data-placeholder="Select Category">
+                                                    <option value="1">Job offer</option>
+                                                    <option value="2">Service listing</option>
+                                            </select>
+                                        </div>
+                                        <!--end form-group-->
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                        <div class="form-group">
+                                            <label for="category" class="col-form-label">location?</label>
+                                            <select name="category" id="category" data-placeholder="Select Category">
+                                                    <option value="">-</option>
+                                                    @foreach($district as $item)
+                                                        <option>{{$item->name}}</option>
+                                                    @endforeach
+                                            </select>
+                                        </div>
+                                        <!--end form-group-->
                                 </div>
                                 <!--end col-md-3-->
                                 <div class="col-md-3 col-sm-3">
@@ -49,7 +71,7 @@
                             <!--end form-row-->
                         </div>
                         <!--end main-search-form-->
-
+                    </form>
                     </div>
                     <!--end container-->
                 </form>
@@ -202,16 +224,17 @@
                                 </div>
                             </div>
                             <!--============ Items ==========================================================================-->
+@foreach($service as $item)                            
                             <div class="items list grid-xl-3-items grid-lg-3-items grid-md-2-items">
                                 <div class="item">
-                                    <div class="ribbon-featured">Job Offer</div>
+                                    <div class="ribbon-featured">Service </div>
                                     <!--end ribbon-->
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
                                                 <a href="#" class="tag category">Real Estate</a>
-                                                <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                                                <span class="tag">Offer</span>
+                                            <a href="single-listing-1.html" class="title">{{$item->service_title}}</a>
+                                                <span class="tag">Service</span>
                                             </h3>
                                             <a href="single-listing-1.html" class="image-wrapper background-image">
                                                 <img src="assets/img/image-01.jpg" alt="">
@@ -219,7 +242,7 @@
                                         </div>
                                         <!--end image-->
                                         <h4 class="location">
-                                            <a href="#">Gasabo, Kigali</a>
+                                        <a href="#">{{$item->district->name}}</a>
                                         </h4>
                                         <div class="price">$80</div>
                                         <div class="meta">
@@ -234,14 +257,14 @@
                                         </div>
                                         <!--end meta-->
                                         <div class="description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
+                                            <p>{{$item->service_desc}}</p>
                                         </div>
                                         <!--end description-->
-                                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
+                                    <a href=" {{ url ('/single',$item->id)}} " class="detail text-caps underline">Detail</a>
                                     </div>
                                 </div>
                                 <!--end item-->
-
+ @endforeach 
                                 <div class="item">
 																	<div class="ribbon-featured">Service Listing</div>
 																	<div class="wrapper">
@@ -259,7 +282,7 @@
 																			<h4 class="location">
 																					<a href="#">Gasabo, Kigali</a>
 																			</h4>
-																			<div class="price">$80</div>
+																			
 																			<div class="meta">
 																					<figure>
 																							<i class="fa fa-calendar-o"></i>02.05.2018
@@ -357,7 +380,7 @@
                                 </div>
                                 <!--end item-->
 
-																<div class="item">
+								<div class="item">
                                     <div class="ribbon-featured">Job Offer</div>
                                     <!--end ribbon-->
                                     <div class="wrapper">
@@ -394,9 +417,9 @@
                                         <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
                                     </div>
                                 </div>
-                                <!--end item-->
+                                {{-- <!--end item-->
 
-                                <div class="item">
+                                                                <div class="item">
 																	<div class="ribbon-featured">Service Listing</div>
 																	<div class="wrapper">
 																			<div class="image">
@@ -431,10 +454,10 @@
 																			<!--end description-->
 																			<a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
 																	</div>
-                                </div>
-                                <!--end item-->
+                                                                </div> --}}
+                                                         <!--end item-->
 
-																<div class="item">
+								{{-- <div class="item">
                                     <div class="ribbon-featured">Job Offer</div>
                                     <!--end ribbon-->
                                     <div class="wrapper">
@@ -471,7 +494,7 @@
                                         <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
                                     </div>
                                 </div>
-                                <!--end item-->
+                                <!--end item--> --}}
 
                                 <div class="item">
 																	<div class="ribbon-featured">Service Listing</div>
@@ -588,7 +611,7 @@
                         <div class="col-md-3">
                             <!--============ Side Bar ===============================================================-->
                             <aside class="sidebar">
-                                <section>
+                                {{-- <section>
                                     <h2></h2>
 																		<img src="assets/img/banner.jpg">
 																		<hr>
@@ -596,7 +619,7 @@
 																		<hr>
 																		<img src="assets/img/banner.jpg">
 
-                                </section>
+                                </section> --}}
                             </aside>
                             <!--============ End Side Bar ===========================================================-->
                         </div>

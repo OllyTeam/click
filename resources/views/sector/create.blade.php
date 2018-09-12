@@ -7,14 +7,14 @@
         </div>
         <!--============ End Page Title =====================================================================--><!--end background-->
         <div class="col-md-8">
-          {!! Form::open(['action'=>'DistrictController@store','method'=>'POST']) !!}
+          {!! Form::open(['action'=>'SectorController@store','method'=>'POST']) !!}
         <div class="form-group row">
-           <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Province') }}</label>
+          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('District') }}</label>
            <div class="col-md-6">
-              <select name="province">
-                 @if(count($pro) > 0)    
-                    @foreach($pro as $index => $po)
-                      <option value="{{$po->id}}"> {{$po->name}} </option>
+              <select name="district">
+                 @if(count($districts) > 0)    
+                    @foreach($districts as $index => $district)
+                      <option value="{{$district->id}}"> {{$district->name}} </option>
                     @endforeach
                  @endif
               </select>
@@ -23,7 +23,7 @@
         <div class="form-group row">
            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
            <div class="col-md-6">
-              <input id="name" type="text" required class="form-control" name="name" placeholder="District Name"  autofocus>
+              <input id="name" type="text" required class="form-control" name="name" placeholder="Sector Name"  autofocus>
            </div>
         </div>
         <div class="form-group row mb-0">

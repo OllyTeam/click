@@ -10,7 +10,7 @@ class province extends Model
         return $this->hasMany('App\district');
     }
 
-    public function sector(){
-        return $this->hasMany('App\sector');
-    }
+    // public function sector(){
+    //     return $this->hasMany('App\sector');
+    // }
 }

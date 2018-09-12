@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\district;
-use App\province;
+use App\category;
 
-class DistrictController extends Controller
+
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,8 @@ class DistrictController extends Controller
      */
     public function index()
     {
-
-        //return districts view page
-        $districts = district::all();
-        return view('district.index')->with('districts' , $districts);
-        
+        $category = category::all();
+        return view('category.index')->with('category',$category);
     }
 
     /**
@@ -29,14 +26,7 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
-
-        // $pro = province::all();
-        //     return view('district.create')->with($pro,'pro');
-              //return districts view page
-        $pro = province::all();
-        return view('district.create')->with('pro' , $pro);
-        
+        return view('category.create');
     }
 
     /**
@@ -47,13 +37,11 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $save = new District();
-        $save->province_id = $request->input('province');
-        $save->name = $request->input('name');
-        $save->save();
+        $category = new category();
+        $category->name = $request->input('name');
+        $category->save();
 
-        return redirect('/district');
+        return redirect('category');
     }
 
     /**
@@ -98,13 +86,10 @@ class DistrictController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del = category::find($id);
+        $del->delete();
 
-       
-            $post = district::find($id);
-            $post->delete();
-    
-            return redirect('district');
         
+        return redirect('category');
     }
 }
