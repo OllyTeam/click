@@ -13,6 +13,7 @@
                             <!--end alternative-search-form-->
                         </div>
                         <!--end container-->
+                    </form>
                     <!--end hero-form-->
                 </div>
                 <!--end collapse-->
@@ -60,6 +61,7 @@
                         </div>
                         <!--end col-md-3-->
                         <div class="col-md-9">
+                            <form class="form">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <h2>Insert Job Offer Information</h2>
@@ -69,7 +71,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label required">Offer Employer Owner Name / Company Name</label>
-                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" >
+                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
@@ -78,7 +80,7 @@
                                             <!--end row-->
                                             <div class="form-group">
                                                 <label for="location" class="col-form-label required">Position</label>
-                                                <input name="location" type="text" class="form-control" id="input-location2" placeholder="Your Location"  >
+                                                <input name="location" type="text" class="form-control" id="input-location2" placeholder="Your Location"  required>
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
@@ -87,7 +89,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="location" class="col-form-label required">Compensation</label>
-                                                <input name="location" type="text" class="form-control" id="input-location2" placeholder="Your Location"  >
+                                                <input name="location" type="text" class="form-control" id="input-location2" placeholder="Your Location"  required>
                                             </div>
                                             <div class="form-group">
                                                     <div class="row">
@@ -106,11 +108,10 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                 <label for="name" class="col-form-label required ">District</label>
-                                                                    <div id="district2" >
-                                                                        <select name="sector">
+                                                                    <div id="district2">
+                                                                        <select id="district" class="list">
                                                                             
                                                                         </select>
-                                                                    
                                                                     </div>
                                                                 </div>
                                                                 <!--end form-group-->
@@ -119,9 +120,10 @@
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="name" class="col-form-label required">Sector</label>
-                                                                
-                                                                    <div id="sector" name="sector2">
-                                                                        <select></select>
+                                                                    <div id="sector">
+                                                                        <select id="sector" class="list2">
+                                                                            
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <!--end form-group-->
@@ -135,7 +137,7 @@
                                             <h2>Personal Info</h2>
                                             <div class="form-group">
                                                 <label for="phone" class="col-form-label required">Phone</label>
-                                                <input name="phone" type="text" class="form-control" id="phone" placeholder="Your Phone" >
+                                                <input name="phone" type="text" class="form-control" id="phone" placeholder="Your Phone" required pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" >
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
@@ -145,7 +147,7 @@
                                             <!--end form-group-->
                                              <div class="form-group">
                                                 <label for="email" class="col-form-label required">Languages</label>
-                                                <input name="Language" type="text" class="form-control" id="email" placeholder="Your Language">
+                                                <input name="Language" type="text" class="form-control" id="email" placeholder="Your Language" required pattern="[a-zA-Z, ]" >
                                             </div>
                                         </section>
 
@@ -184,7 +186,7 @@ $(document).ready(function(){
 
     $('#province').on('change',function(e){
         if($(this).val() != '')
-        {
+        { 
 
                 var select = $(this).attr("id");
                 var value = $(this).val();
@@ -197,17 +199,17 @@ $(document).ready(function(){
                             data:{select:select, value:value, _token:_token,dependent:dependent},
                             success:function(result)
                             {
+                                    // $.each(result,function(index,item){
+                                    //    $('.list').append('<option value="">' + item.name + '</option>' );
+                                    // });
 
                                      var myDiv = document.getElementById("district2");
                                      document.getElementById("district2").innerHTML = ""; 
-                                     document.getElementById("sector").value =""; 
 
-                                    
-
-                                    var selectList = document.createElement("select");
-                                    selectList.id = "mySelect";
-                                    selectList.name = "district";
-                                    myDiv.appendChild(selectList);
+                                     var selectList = document.createElement("select");
+                                     selectList.id = "mySelect";
+                                     selectList.class = "form";
+                                     myDiv.appendChild(selectList);
 
                                     //Create and append the options
                                     for (var i = 0; i < result.length; i++) 
@@ -223,42 +225,49 @@ $(document).ready(function(){
                         });
         }   
     });
-///--------------------------------------------------------------------------------------------------
-
-    $('#district2').on('click',function(){
-        var value2 = $("#mySelect").val();
-        if (value2 != "")
-        {
-            $.ajax({
-                    url:"{{url('dynamicdata2.fetch')}}",
-                    method:"POST",
-                    data:{value2:value2,_token: '{!! csrf_token() !!}'},
-                        success:function(data)
-                        {
-                            var myDiv2 = document.getElementById("sector");
-                            myDiv2.innerHTML = "";
-
-                            var selectList2 = document.createElement("select");
-                            selectList2.id = "mySelect2";
-                            selectList2.name = "sector";
-                            myDiv2.appendChild(selectList2);
-
-                                for(var j = 0; j < data.length; j++)
-                                {
-                                    var option2 = document.createElement("option");
-                                    option2.value = data[j].id;
-                                    option2.text = data[j].name;
-                                    selectList2.appendChild(option2);
-                                    console.log(data[j].id,data[j].name);
-                                }
-                        }
-                    });
-        }
-        
-    });
 
 
-//-----------------------------------------------------------------------------------------------    
+                                $('#mySelect').on('change',function(e){
+                                    if($(this).val() != '')
+                                    { 
+
+                                            var select = $(this).attr("id");
+                                            var value = $(this).val();
+                                            var dependent = $(this).data('dependent');
+                                            var _token = $('input[name="_token"]').val();
+
+                                            $.ajax({
+                                                        url:"{{url('dynamicdata.fetch2')}}",
+                                                        method:"POST",
+                                                        data:{select:select, value:value, _token:_token,dependent:dependent},
+                                                        success:function(result)
+                                                        {
+                                                                $.each(result,function(index,item){
+                                                                   $('.list').append('<option value="">' + item.name + '</option>' );
+                                                                });
+
+                                                                 var myDiv = document.getElementById("district2");
+                                                                 document.getElementById("district2").innerHTML = ""; 
+
+                                                                 var selectList = document.createElement("select");
+                                                                 selectList.id = "mySelect";
+                                                                 selectList.class = "form";
+                                                                 myDiv.appendChild(selectList);
+
+                                                                //Create and append the options
+                                                                for (var i = 0; i < result.length; i++) 
+                                                                {
+                                                                    var option = document.createElement("option");
+                                                                     option.value = result[i].id;
+                                                                     option.text = result[i].name;
+                                                                     selectList.appendChild(option);
+                                                                     console.log(result[i].id,result[i].name);
+                                                                }
+
+                                                        }
+                                                    });
+                                    }   
+                                });
 });    
 
 </script>
