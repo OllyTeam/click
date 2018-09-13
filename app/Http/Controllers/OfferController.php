@@ -39,7 +39,7 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        return $request->input('district');
     }
 
     /**

@@ -5,6 +5,7 @@ use App\province;
 use App\s_listing;
 use App\user;
 use App\district;
+use App\sector;
 /*
 |__________________________________________________________________________
 | Web Routes
@@ -47,20 +48,31 @@ Route::resource('/offer','OfferController'); // this is the Route for all offers
 Route::get('/contact','PostsController@contact');
 Route::resource('/sector','SectorController');
 
-Route::post('/dynamicdata.fetch',function(Request $request){
+
+
+
+
+
+
+
+
+Route::post('/dynamicdata.fetch',function(Request $request){  //ajx retrieving all district based on
 
 	$select = $request->get('select');
 	$value = $request->get('value');
 	$dependent = $request->get('dependent');
 	$data  = district::where('province_id',$value)->get();
 
-	// $output = '<option value"">Select '.ucfirst($dependent).'</option>'; 
-	// foreach ($data as $row) {
-	// 	$output .= '<option value"'.$row->id.'">'.ucfirst($row->name).'</option>'; 
-
-	// }
-	// echo $output;
-
 	return Response::json($data);
 
 })->name('dynamicdata.fetch');
+
+
+Route::post('/dynamicdata2.fetch',function(Request $request){  //ajx retrieving all sector based on
+
+	$value2 = $request->get('value2');
+	$data  = sector::where('district_id',$value2)->get();
+
+	return Response::json($data);
+
+})->name('dynamicdata2.fetch');
