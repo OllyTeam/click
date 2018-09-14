@@ -29,6 +29,10 @@ class User extends Authenticatable
 
 
     public function s_listing(){
-        return $this->hasOne('s_listing');
+        return $this->hasMany('App\s_listing');
+    }
+
+    public function joboffer(){
+        return $this->hasOne('App\joboffer');
     }
 }

@@ -47,13 +47,13 @@
                                 <a class="nav-link icon" href="{{url('/offer')}}">
                                     <i class="fa fa-heart"></i>My job offers
                                 </a>
-                                <a class="nav-link icon" href="bookmarks.html">
+                                <a class="nav-link icon" href="{{url('/service')}}">
                                     <i class="fa fa-star"></i>My service listings
                                 </a>
                                 <a class="nav-link icon" href="change-password.html">
                                     <i class="fa fa-recycle"></i>My reviews 
                                 </a>
-                                <a class="nav-link icon" href="sold-items.html">
+                                <a class="nav-link icon" href="{{route('logout')}}">
                                     <i class="fa fa-check"></i>Logout
                                 </a>
                             </nav>

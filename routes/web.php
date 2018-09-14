@@ -5,6 +5,7 @@ use App\province;
 use App\s_listing;
 use App\user;
 use App\district;
+
 /*
 |__________________________________________________________________________
 | Web Routes
@@ -15,11 +16,16 @@ use App\district;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/service/create','ServiceController@create');
 
-
-
+Route::post('','ServiceController@store');
 
 Route::get('/register','PagesController@register');
+
+Route::get('/profile',function(){
+
+	return view('my_profile');
+});
 
 Route::get('/', 'PostsController@home');
 
@@ -45,7 +51,7 @@ Route::resource('/district','DistrictController');  //this is the route for all 
 Route::resource('/category','CategoryController'); //this is the route for all category
 Route::resource('/offer','OfferController'); // this is the Route for all offers
 Route::get('/contact','PostsController@contact');
-Route::resource('/sector','SectorController');
+Route::resource('/sector','SectorController'); //his is the controller for 
 
 Route::post('/dynamicdata.fetch',function(Request $request){
 
@@ -53,13 +59,6 @@ Route::post('/dynamicdata.fetch',function(Request $request){
 	$value = $request->get('value');
 	$dependent = $request->get('dependent');
 	$data  = district::where('province_id',$value)->get();
-
-	// $output = '<option value"">Select '.ucfirst($dependent).'</option>'; 
-	// foreach ($data as $row) {
-	// 	$output .= '<option value"'.$row->id.'">'.ucfirst($row->name).'</option>'; 
-
-	// }
-	// echo $output;
 
 	return Response::json($data);
 

@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-use App\district;
-use App\province;
+use App\category;
 
-class DistrictController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +14,7 @@ class DistrictController extends Controller
      */
     public function index()
     {
-            if(Auth::check()){
-
-
-                $districts = district::all();
-                return view('district.index')->with('districts' , $districts);
-
-
-            }else{
-
-                return redirect('/');
-            }
-
-       
-        
+        //
     }
 
     /**
@@ -39,10 +24,8 @@ class DistrictController extends Controller
      */
     public function create()
     {
- 
-        $pro = province::all();
-        return view('district.create')->with('pro' , $pro);
-        
+        $category = category::all();
+        return view('service.create')->with('category',$category);
     }
 
     /**
@@ -53,13 +36,7 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $save = new District();
-        $save->province_id = $request->input('province');
-        $save->name = $request->input('name');
-        $save->save();
-
-        return redirect('/district');
+        return $request;
     }
 
     /**
@@ -105,12 +82,5 @@ class DistrictController extends Controller
     public function destroy($id)
     {
         //
-
-       
-            $post = district::find($id);
-            $post->delete();
-    
-            return redirect('district');
-        
     }
 }

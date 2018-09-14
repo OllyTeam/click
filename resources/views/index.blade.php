@@ -242,7 +242,7 @@
                                         </div>
                                         <!--end image-->
                                         <h4 class="location">
-                                        <a href="#">{{$item->district->name}}</a>
+                                        <a href="#">{{$item->district_id}}</a>
                                         </h4>
                                         <div class="price">$80</div>
                                         <div class="meta">
@@ -608,18 +608,18 @@
                             <!--end page-pagination-->
                         </div>
                         <!--end col-md-9-->
-                        <div class="col-md-3">
+                       <div class="col-md-3">
                             <!--============ Side Bar ===============================================================-->
                             <aside class="sidebar">
-                                {{-- <section>
+                                <section>
                                     <h2></h2>
-																		<img src="assets/img/banner.jpg">
-																		<hr>
-																		<img src="assets/img/banner.jpg">
-																		<hr>
-																		<img src="assets/img/banner.jpg">
+                                        <img src="assets/img/banner.jpg">
+                                        <hr>
+                                        <img src="assets/img/banner.jpg">
+                                        <hr>
+                                        <img src="assets/img/banner.jpg">
 
-                                </section> --}}
+                                </section>
                             </aside>
                             <!--============ End Side Bar ===========================================================-->
                         </div>
@@ -630,72 +630,6 @@
                 <!--end background-->
             </section>
             <!--============ End Featured Ads =======================================================================-->
-            <!--============ Features Steps =========================================================================-->
-            <section class="block has-dark-background">
-                <div class="container">
-                    <div class="block">
-                        <h2>Selling With Us Is Easy</h2>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="feature-box">
-                                    <figure>
-                                        <img src="assets/icons/feature-user.png" alt="">
-                                        <span>1</span>
-                                    </figure>
-                                    <h3>Create an Account</h3>
-                                    <p>Etiam molestie viverra dui vitae mattis. Ut velit est</p>
-                                </div>
-                                <!--end feature-box-->
-                            </div>
-                            <!--end col-->
-                            <div class="col-md-3">
-                                <div class="feature-box">
-                                    <figure>
-                                        <img src="assets/icons/feature-upload.png" alt="">
-                                        <span>2</span>
-                                    </figure>
-                                    <h3>Submit Your Ad</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                                <!--end feature-box-->
-                            </div>
-                            <!--end col-->
-                            <div class="col-md-3">
-                                <div class="feature-box">
-                                    <figure>
-                                        <img src="assets/icons/feature-like.png" alt="">
-                                        <span>3</span>
-                                    </figure>
-                                    <h3>Make a Deal</h3>
-                                    <p>Nunc ultrices eu urna quis cursus. Sed viverra ullamcorper</p>
-                                </div>
-                                <!--end feature-box-->
-                            </div>
-                            <!--end col-->
-                            <div class="col-md-3">
-                                <div class="feature-box">
-                                    <figure>
-                                        <img src="assets/icons/feature-wallet.png" alt="">
-                                        <span>4</span>
-                                    </figure>
-                                    <h3>Enjoy the Money!</h3>
-                                    <p>Integer nisl ipsum, sodales sed scelerisque nec, aliquet sit</p>
-                                </div>
-                                <!--end feature-box-->
-                            </div>
-                            <!--end col-->
-                        </div>
-                        <!--end row-->
-                    </div>
-                    <!--end block-->
-                </div>
-                <!--end container-->
-                <div class="background" data-background-color="#2b2b2b"></div>
-                <!--end background-->
-            </section>
-            <!--end block-->
-            <!--============ End Features Steps =====================================================================-->
-
 
         </section>
         <!--end content-->

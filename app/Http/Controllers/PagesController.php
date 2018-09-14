@@ -50,7 +50,7 @@ class PagesController extends Controller
          $user->save();
 
 
-       return redirect('/')->with('msg','User Registred');
+       return view('/offer');
     }
 
     /**

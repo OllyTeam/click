@@ -28,20 +28,20 @@
                     <div class="row">
                         <div class="col-md-3">
                             <nav class="nav flex-column side-nav">
-                                <a class="nav-link  icon" href="">
-                                    <i class="fa fa-user"></i>My Profile
+                                <a class="nav-link icon" href="{{url('/offer')}}">
+                                    <i class="fa fa-user"></i>My Offer
                                 </a>
-                                <a class="nav-link active icon" href="{{url('/offer')}}">
-                                    <i class="fa fa-heart"></i>My job offers
+                                <a class="nav-link active icon" href="">
+                                    <i class="fa fa-heart"></i>My Ads Listing
                                 </a>
-                                <a class="nav-link icon" href="{{url('/service')}}">
-                                    <i class="fa fa-star"></i>My service listings
+                                <a class="nav-link icon" href="">
+                                    <i class="fa fa-star"></i>Bookmarks
                                 </a>
-                                <a class="nav-link icon" href="change-password.html">
-                                    <i class="fa fa-recycle"></i>My reviews 
+                                <a class="nav-link icon" href="">
+                                    <i class="fa fa-recycle"></i>Change Password
                                 </a>
-                                <a class="nav-link icon" href="{{route('logout')}}">
-                                    <i class="fa fa-check"></i>Logout
+                                <a class="nav-link icon" href="">
+                                    <i class="fa fa-check"></i>Sold Items
                                 </a>
                             </nav>
                         </div>
@@ -99,23 +99,6 @@
                             <!--end items-->
                         </div>
                         <!--end col-md-9-->
-
-                         <div class="col-md-3">
-                            <!--============ Side Bar ===============================================================-->
-                            <aside class="sidebar">
-                                <section>
-                                    <h2></h2>
-                                        <img src="assets/img/banner.jpg">
-                                        <hr>
-                                        <img src="assets/img/banner.jpg">
-                                        <hr>
-                                        <img src="assets/img/banner.jpg">
-
-                                </section>
-                            </aside>
-                            <!--============ End Side Bar ===========================================================-->
-                        </div>
-                        <!--end col-md-3-->
                     </div>
                     <!--end row-->
                 </div>

@@ -14,7 +14,7 @@ class s_listing extends Model
         return $this->belongsTo('App\category');
     }
 
-    public function user(){
-        return $this->belongsTo('App\user');
+    public function User(){
+        return $this->belongsTo('App\User');
     }
 }

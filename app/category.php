@@ -9,4 +9,8 @@ class category extends Model
     public function s_listing(){
         return $this->hasOne('App\s_listing');
     }
+
+    public function joboffer(){
+        return $this->hasMany('App\joboffer');
+    }
 }

@@ -11,12 +11,7 @@
       <link rel="stylesheet" href=" {{asset('assets/css/style.css')}}">
       <link rel="stylesheet" href=" {{asset('assets/css/user.css')}}">
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script> 
-      <!-- <script type="text/javascript" src="{{asset('js/app.js')}}"></script> -->
-       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
+   
       
       <title>The Link360 - Job Offer & Service Listing</title>
    </head>
@@ -115,9 +110,16 @@
                      <li class="nav-item">
                         <a class="nav-link" href="{{url('contact')}}">Contact</a>
                      </li>
+                     @guest
                      <li class="nav-item">
                         <a href="{{url('/login')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Ad</a>
                      </li>
+
+                     @else
+                     <li class="nav-item">
+                        <a href="{{url('/profile')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Ad</a>
+                     </li>
+                     @endguest
                   </ul>
                   <!--Main navigation list-->
                </div>

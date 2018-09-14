@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\province;
@@ -24,9 +25,20 @@ class ProvinceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('province.create');
+    public function create(){
+    
+            if(Auth::check()){
+
+
+                return view('province\create');
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+     
     }
 
     /**
