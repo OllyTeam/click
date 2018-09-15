@@ -23,6 +23,10 @@ class district extends Model
     public function province(){
         return $this->belongsTo('App\province');
     }
+    
+    public function joboffer(){
+        return $this->hasOne('App\joboffer');
+    }
 
 
 }

@@ -100,22 +100,7 @@
                         </div>
                         <!--end col-md-9-->
 
-                         <div class="col-md-3">
-                            <!--============ Side Bar ===============================================================-->
-                            <aside class="sidebar">
-                                <section>
-                                    <h2></h2>
-                                        <img src="assets/img/banner.jpg">
-                                        <hr>
-                                        <img src="assets/img/banner.jpg">
-                                        <hr>
-                                        <img src="assets/img/banner.jpg">
-
-                                </section>
-                            </aside>
-                            <!--============ End Side Bar ===========================================================-->
-                        </div>
-                        <!--end col-md-3-->
+                        
                     </div>
                     <!--end row-->
                 </div>

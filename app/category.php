@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class category extends Model
 {
     public function s_listing(){
-        return $this->hasOne('App\s_listing');
+        return $this->hasMany('App\s_listing');
     }
 
     public function joboffer(){

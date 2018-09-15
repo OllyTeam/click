@@ -35,8 +35,13 @@ class OfferController extends Controller
      */
     public function create()
     {
+
+        $dis = district::all();
+        $pro = province::all();
+        $sector = sector::all();
         $cat = category::all();
-        return view('offer.create')->with('category',$cat);
+
+        return view('offer.create',['province'=> $pro,'district'=>$dis,'sector'=>$sector, 'category'=>$cat]);
     }
 
     /**
@@ -47,25 +52,42 @@ class OfferController extends Controller
      */
     public function store(Request $request)
     {
-        $job = new joboffer;
-        $job->offername = $request->input('name');
-        $job->offertitle = $request->input('title');
-        $job->description = $request->input('description');
-        $job->compensation = $request->input('compensation');
-        $job->sector_id = $request->input('sector');
-        $job->district_id = $request->input('district');
-        $job->province_id = $request->input('province');
-        $job->category_id = $request->input('category');
-        $job->languages = $request->input("language");
-        $job->email = $request->input("email");
-        $job->phone = $request->input("phone");
-        $job->user_id = Auth()->user()->id;
-        if($job->save()){
-            return redirect('offer');
-        }else{
-            redirect()->recent();
-        }
+        
         //return $job;
+
+        //return $request;
+
+
+        $IdDistrict = district::where('id',$request->input("district"))->get();
+        $IdSector = sector::where('id',$request->input('sector'))->get();
+
+        //return $IdSector[0]['district_id'];
+
+        if ($IdDistrict[0]['province_id'] == $request->input("province") && $IdSector[0]['district_id'] == $request->input("district") ) {
+
+
+            $job = new joboffer;
+            $job->offername = $request->input('name');
+            $job->offertitle = $request->input('title');
+            $job->description = $request->input('description');
+            $job->compensation = $request->input('compensation');
+            $job->sector_id = $request->input('sector');
+            $job->district_id = $request->input('district');
+            $job->province_id = $request->input('province');
+            $job->category_id = $request->input('category');
+            $job->languages = $request->input("language");
+            $job->email = $request->input("email");
+            $job->phone = $request->input("phone");
+            $job->user_id = Auth()->user()->id;
+            if($job->save()){
+                return redirect('offer');
+            }else{
+                redirect()->intended('/service/create');
+            }
+
+        }else{
+           return redirect()->intended('/service/create');
+        }
     }
 
     /**

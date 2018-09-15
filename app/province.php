@@ -13,4 +13,8 @@ class province extends Model
     // public function joboffer(){
     //     return $this->hasMany('App\joboffer');
     // }
+
+    public function joboffer(){
+        return $this->hasOne('App\joboffer');
+    }
 }

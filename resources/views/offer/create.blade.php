@@ -1,5 +1,9 @@
 @include('layouts.top')
 
+
+            <h1 class="well">{{$errors}}</h1>
+
+
                 <div class="page-title">
                     <div class="container">
                         <h1>Job Offers</h1>
@@ -51,14 +55,14 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label required">Offer Employer Owner Name / Company Name</label>
-                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                                        <input name="name" type="text" class="form-control" id="name" value="{{old('name')}}" placeholder="Your Name" required>
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label required">Offer Title </label>
-                                                        <input name="title" type="text" class="form-control" id="name" placeholder="Your title" required>
+                                                        <input name="title" type="text" class="form-control" id="name" value="{{old('title')}}" placeholder="Your title" required>
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
@@ -90,27 +94,49 @@
                                                                     <label for="title" class="col-form-label required">Province</label>
                                                       
 
-                                                                    <input type="text" name="province">
+                                                                    <!-- <input type="text" name="province"> -->
+                                                            <select  name="province" >
+                                                                <option value="">-</option>
+                                                            @foreach($province as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                            </select>
                                                                 </div>
                                                                 <!--end form-group-->
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
+                                            <div class="col-md-4">
+                                                        <div class="form-group">
                                                                 <label for="name" class="col-form-label required ">District</label>
-                                                                    <input type="text" name="district">
-                                                                </div>
+                                                                    <!-- <input type="text" name="district">
+                                                                </div> -->
+                                                        <select  name="district" >
+                                                        <option value="">-</option>
+                                                            @foreach($district as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                                 <!--end form-group-->
-                                                            </div>
-                                                            <!--end col-md-4-->
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="name" class="col-form-label required">Sector</label>
-                                                                <input type="text" name="sector">
-                                                                </div>
-                                                                <!--end form-group-->
-                                                            </div>
                                                     </div>
+                                                            <!--end col-md-4-->
+                                                   
                                             </div>
+                                            <div class="col-md-4">
+                                                        <div class="form-group">
+                                                                <label for="name" class="col-form-label required ">sector</label>
+                                                                    <!-- <input type="text" name="district">
+                                                                </div> -->
+                                                        <select  name="sector" >
+                                                        <option value="">-</option>
+                                                            @foreach($sector as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                                <!--end form-group-->
+                                                    </div>
+                                                            <!--end col-md-4-->
+                                                   
+                                            </div>
+                             </div>
                                             <!--end form-group-->
                                         </section>
 

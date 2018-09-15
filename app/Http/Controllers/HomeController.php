@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\joboffer;
+use Illuminate\Support\Facades\DB;
+use App\district;
+use App\province;
+use App\sector;
+use App\category;
 
 class HomeController extends Controller
 {
@@ -28,7 +34,13 @@ class HomeController extends Controller
         if( Auth()->User()->status == 1 ){
             return view('dashboard')->with('user', $user);
         }else{
-            return view('my_profile');
+
+            $dis = district::all();
+            $pro = province::all();
+            $cat = category::all();
+            $id = Auth()->user()->id;
+            $offer = joboffer::where('user_id','=',$id)->get();
+                return view('offer.index')->with('offer',$offer);
         }
 
         

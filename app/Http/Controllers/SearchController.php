@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\category;
 
-
-class CategoryController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $category = category::orderBy('created_at', 'ASC')->get();;
-        return view('category.index')->with('category',$category);
+        return $request;
     }
 
     /**
@@ -26,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        //
     }
 
     /**
@@ -37,11 +34,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new category();
-        $category->name = $request->input('name');
-        $category->save();
-
-        return redirect('category');
+        //
     }
 
     /**
@@ -86,10 +79,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $del = category::find($id);
-        $del->delete();
-
-        
-        return redirect('category');
+        //
     }
 }

@@ -2,7 +2,7 @@
 
                 <div class="page-title">
                     <div class="container">
-                        <h1>Job Offers</h1>
+                        <h1>Service</h1>
                     </div>
                     <!--end container-->
                 </div>
@@ -23,16 +23,16 @@
                     <div class="row">
                         <div class="col-md-3">
                             <nav class="nav flex-column side-nav">
-                                <a class="nav-link active icon" href="#">
+                                <a class="nav-link  icon" href="#">
                                     <i class="fa fa-user"></i>My job offers 
                                 </a>
                                 <a class="nav-link icon" href="{{url('/offer')}}">
                                     <i class="fa fa-heart"></i>My Profile
                                 </a>
-                                <a class="nav-link icon" href="bookmarks.html">
+                                <a class="nav-link active icon" href="#">
                                     <i class="fa fa-star"></i>My service listings
                                 </a>
-                                <a class="nav-link icon" href="change-password.html">
+                                <a class="nav-link icon" href="#">
                                     <i class="fa fa-recycle"></i>My reviews 
                                 </a>
                                 <a class="nav-link icon" href="sold-items.html">
@@ -44,21 +44,21 @@
                         <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <h2>Insert Job Offer Information</h2>
+                                        <h2>Insert Your Service Information</h2>
                                         <section>
                                             <div class="row">
                                                 {{ Form::open(['action'=>'ServiceController@store','method'=>'POST']) }}
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label required">Service title</label>
-                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Service Name" required>
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="name" class="col-form-label required">Service description </label>
-                                                        <input name="title" type="text" class="form-control" id="name" placeholder="Your title" required>
+                                                        <input name="desc" type="text" class="form-control" id="name" placeholder="Service title" required>
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
@@ -77,7 +77,7 @@
                                             <!--end form-group-->
                                             <div class="form-group">
                                                 <label for="location" class="col-form-label required">Education </label>
-                                                <input type="text" name="compensation" placeholder="Your compensation">
+                                                <input type="text" name="education" placeholder="Your education">
                                             </div>
                                             <div class="form-group">
                                                 <label for="location" class="col-form-label required">Employment type </label>
@@ -95,25 +95,48 @@
                                                                     <label for="title" class="col-form-label required">Province</label>
                                                       
 
-                                                                    <input type="text" name="province">
+                                                                    <!-- <input type="text" name="province"> -->
+                                                            <select  name="province" >
+                                                                <option value="">-</option>
+                                                            @foreach($province as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                            </select>
                                                                 </div>
                                                                 <!--end form-group-->
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
+                                            <div class="col-md-4">
+                                                        <div class="form-group">
                                                                 <label for="name" class="col-form-label required ">District</label>
-                                                                    <input type="text" name="district">
-                                                                </div>
+                                                                    <!-- <input type="text" name="district">
+                                                                </div> -->
+                                                        <select  name="district" >
+                                                        <option value="">-</option>
+                                                            @foreach($district as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                                 <!--end form-group-->
-                                                            </div>
+                                                    </div>
                                                             <!--end col-md-4-->
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="name" class="col-form-label required">Sector</label>
-                                                                <input type="text" name="sector">
-                                                                </div>
+                                                   
+                                            </div>
+                                            <div class="col-md-4">
+                                                        <div class="form-group">
+                                                                <label for="name" class="col-form-label required ">sector</label>
+                                                                    <!-- <input type="text" name="district">
+                                                                </div> -->
+                                                        <select  name="sector" >
+                                                        <option value="">-</option>
+                                                            @foreach($sector as $item)
+                                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                                 <!--end form-group-->
-                                                            </div>
+                                                    </div>
+                                                            <!--end col-md-4-->
+                                                   
+                                            </div>
                                                     </div>
                                             </div>
                                             <!--end form-group-->
@@ -143,15 +166,6 @@
                                     </div>
                                     <!--end col-md-8-->
                                     <div class="col-md-4">
-                                        <!-- <div class="profile-image">
-                                            <div class="image background-image">
-                                                <img src="assets/img/author-09.jpg" alt="">
-                                            </div>
-                                            <div class="single-file-input">
-                                                 <input type="file" id="user_image" name="user_image"> 
-                                                <div class="btn btn-framed btn-primary small">Upload a picture</div> 
-                                            </div>
-                                        </div> -->
                                         {{  csrf_field() }}
                                     </div>
                                     <!--end col-md-3-->

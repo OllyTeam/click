@@ -12,7 +12,7 @@ class PostsController extends Controller
 
     public function home() {
 
-        $category = category::all(); 
+        $category = category::orderBy('created_at','ASC')->get(); 
 
         $district = district::all();
 

@@ -97,18 +97,18 @@
                   <!--Main navigation list-->
                   <ul class="navbar-nav">
                      <li class="nav-item active">
-                        <a class="nav-link" href=" {{url('/')}}">Home</a>
+                        <a  href=" {{url('/')}}">Home</a>
                      </li>
                      <li class="nav-item has-child">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a href="#">About Us</a>
                         <!--1st level -->
                      </li>
                      <li class="nav-item has-child">
-                        <a class="nav-link" href="#">How it works</a>
+                        <a href="#">How it works</a>
                         <!--1st level -->
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="{{url('contact')}}">Contact</a>
+                        <a  href="{{url('contact')}}">Contact</a>
                      </li>
                      @guest
                      <li class="nav-item">
