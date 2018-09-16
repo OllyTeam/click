@@ -40,12 +40,16 @@ Route::post('/search',function(Request $request){
 	return view('search.result',['results'=>$results, 'type'=>$type, 'district'=>$dis,'sector'=>$sec,'category'=>$cat]);
 		
 	}else{
+
+	$dis = district::all();
+	$sec = sector::all();
+	$cat = category::all();
 		
-	$results = DB::select('select * from s_listings where service_title LIKE :title and category_id = :category  and district_id = :district', ['title' => $title,'category'=> $category, 'district' => $district])->get();
+	$results = DB::select('select * from s_listings where service_title LIKE :title and category_id = :category  and district_id = :district', ['title' => $title,'category'=> $category, 'district' => $district]);
 
 
-
-	return view('search.result',['results'=>$results, 'type'=>$type, 'district'=>$dis,'sector'=>$sec,'category'=>$cat]);
+	return $results;
+	//return view('search.result',['results'=>$results, 'type'=>$type, 'district'=>$dis,'sector'=>$sec,'category'=>$cat]);
 
 	}
 
