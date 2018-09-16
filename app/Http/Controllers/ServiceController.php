@@ -7,6 +7,7 @@ use App\category;
 use App\district;
 use App\province;
 use App\sector;
+use App\s_listing;
 
 class ServiceController extends Controller
 {
@@ -17,7 +18,13 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $dis = district::all();
+        $pro = province::all();
+        $sector = sector::all();
+        $cat = category::all();
+
+        $service = s_listing::all();
+        return view('service.index')->with(['service'=>$service,'district'=>$dis,'province'=>$pro, 'sector'=>$sector, 'category'=>$cat]);
     }
 
     /**
@@ -42,12 +49,14 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+    
             $IdDistrict = district::where('id',$request->input("district"))->get();
         $IdSector = sector::where('id',$request->input('sector'))->get();
 
         //return $IdSector[0]['district_id'];
+
+        //return $request;
 
         if ($IdDistrict[0]['province_id'] == $request->input("province") && $IdSector[0]['district_id'] == $request->input("district") ) {
 
@@ -59,24 +68,21 @@ class ServiceController extends Controller
             $service->district_id = $request->input('district');
             $service->province_id = $request->input('province');
             $service->category_id = $request->input('category');
-            $service->languages = $request->input("language");
+            $service->language = $request->input("language");
             $service->email = $request->input("email");
             $service->phone = $request->input("phone");
             $service->user_id = Auth()->user()->id;
 
-
-            return $service;
-            // if($job->save()){
-            //     echo 'Okkk';
-            // }else{
-            //     echo "Noooo";
-            //     //return redirect()->intended('/offer/create');
-            // }
+            if($service->save()){
+                return redirect('service');
+            }else{
+                return redirect()->intended('/offer/create');
+            }
         }
 
-        // }else{
-        //    return redirect()->intended('/offer/create')->with('errors','Invalid Location');
-        // }
+    //     // }else{
+    //     //    return redirect()->intended('/offer/create')->with('errors','Invalid Location');
+    //     // }
     }
 
     /**

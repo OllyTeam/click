@@ -9,6 +9,7 @@ use App\category;
 use App\joboffer;
 use App\sector;
 
+
 /*
 |__________________________________________________________________________
 | Web Routes
@@ -21,9 +22,6 @@ use App\sector;
 */
 Route::post('/search',function(Request $request){
 
-	// $title = $request->input('name');
-	// $category = $request->input('category');
-	// $district = $request->input('location');
 	$title = '%%'.$request->input('keyword').'%%';
 	$category = $request->input('category');
 	$district = $request->input('location');
@@ -55,7 +53,8 @@ Route::post('/search',function(Request $request){
 });
 
 Route::get('/categorylist/{id}',function($id){
-	$category = joboffer::where('category_id',$id)->get();
+ 
+	$category = s_listing::where('category_id',$id)->get();
 
 	return $category;
 	
@@ -64,9 +63,9 @@ Route::get('/categorylist/{id}',function($id){
 
 
 
-Route::get('/service/create','ServiceController@create');
+//Route::get('/service/create','ServiceController@create');
 
-Route::post('','ServiceController@store');
+Route::resource('/service','ServiceController');
 
 Route::get('/register','PagesController@register');
 
@@ -88,30 +87,16 @@ Route::get('/dashboard',function(){
 
 
 Route::get('/single/{id}',function($id){
+	$pro = province::all();
+	$dis = district::all();
+	$sec = sector::all();
+	$cat = category::all();
+	$user = App\User::all();
 
     $service = s_listing::find($id);
 
-    return view('single_listing_2')->with('service',$service);
+    return view('single_listing_2')->with(['service'=>$service,'district'=>$dis, 'sector'=>$sec,'province'=>$pro, 'user'=>$user, 'category'=>$cat]);
 });
 
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-Route::resource('/province','ProvinceController');  //this is the route for all province
-Route::resource('/district','DistrictController');  //this is the route for all district
-Route::resource('/category','CategoryController'); //this is the route for all category
-Route::resource('/offer','OfferController'); // this is the Route for all offers
-Route::get('/contact','PostsController@contact');
-Route::resource('/sector','SectorController'); //his is the controller for 
-
-Route::post('/dynamicdata.fetch',function(Request $request){
-
-	$select = $request->get('select');
-	$value = $request->get('value');
-	$dependent = $request->get('dependent');
-	$data  = district::where('province_id',$value)->get();
-
-	return Response::json($data);
-
-})->name('dynamicdata.fetch');

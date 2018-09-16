@@ -51,7 +51,9 @@
                             
                             <!--============ Items ==========================================================================-->
                             <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
-
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{url('offer/create')}}" class="btn btn-primary">Add offer</a>
+<br>
+<br>
                                 @foreach($offer as $item)
                                 <div class="item">
                                     <div class="ribbon-featured">Recent</div>
@@ -59,7 +61,7 @@
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
-                                                <a href="#" class="tag category">{{$item->category->name}}</a>
+                                                <a href="#" class="tag category">{{$item->category_id}}</a>
                                                 <a href="single-listing-1.html" class="title">{{$item->offertitle}}</a>
                                                 <span class="tag">Offer</span>
                                             </h3>
@@ -68,15 +70,24 @@
                                             </a>
                                         </div>
                                         <!--end image-->
-                                        <h4 class="location">
-                                            <a href="#">{{$item->district_id}}, {{$item->province_id}}</a>
+                                        <h4 class="">
+                                            <a style="text-decoration:none;">
+                                                @foreach($district as $item2)
+                                                    @if($item->district_id == $item2->id)
+                                                        {{$item2->name}}
+                                                    @endif
+                                                @endforeach
+                                                    ,
+                                                @foreach($province as $item2)
+                                                    @if($item->province_id == $item2->id)
+                                                        {{$item2->name}}
+                                                    @endif
+                                                @endforeach
+                                            </a>
                                         </h4>
                                         <div class="admin-controls">
                                             <a href="{{url('/offer',$item->id)}}">
                                                 <i class="fa fa-pencil"></i>Edit
-                                            </a>
-                                            <a href="#" class="ad-hide">
-                                                <i class="fa fa-eye-slash"></i>Hide
                                             </a>
                                             <a href="#" class="ad-remove">
                                                 <i class="fa fa-trash"></i>Remove

@@ -16,9 +16,7 @@
                             <h1>{{$service->service_title}}
                                 <span class="tag">Service</span>
                             </h1>
-                            <h4 class="location">
-                            <a href="#">{{$service->district_id}}, </a>
-                            </h4>
+
                         </div>
                     </div>
                     <!--end container-->
@@ -46,7 +44,7 @@
                             <!--Description-->
                             <section>
                                 <h2>Description</h2>
-                            <p style="min-height: 200px">{{$service->service_desc}}</p>
+                            <p style="min-height: 100px">{{$service->service_desc}}</p>
                             </section>
                             <!--end Description-->
                             <!--Details-->
@@ -56,11 +54,31 @@
                                     <dt>Date Added</dt>
                                     <dd>{{$service->created_at}}</dd>
                                     <dt>Province</dt>
-                                    <dd>{{$service->province_id}}</dd>
+                                    <dd>
+
+                                        @foreach($province as $item)
+                                            @if($service->province_id == $item->id)
+                                                {{$item->name}}   
+                                            @endif
+                                        @endforeach
+
+                                    </dd>
                                     <dt>District</dt>
-                                    <dd>{{$service->district_id}}</dd>
+                                    <dd>
+                                        @foreach($district as $item)
+                                            @if($service->district_id == $item->id)
+                                                {{$item->name}}   
+                                            @endif
+                                        @endforeach
+                                    </dd>
                                     <dt>Sector</dt>
-                                    <dd>{{$service->sector_id}}</dd>
+                                    <dd>
+                                        @foreach($district as $item)
+                                            @if($service->sector_id == $item->id)
+                                                {{$item->name}}   
+                                            @endif
+                                        @endforeach
+                                    </dd>
                                     <dt>Category</dt>
                                     <dd>{{$service->category->name}}</dd>
                                     <dt>Languages</dt>
@@ -68,16 +86,7 @@
                                     
                                 </dl>
                             </section>
-                            <!--end Details-->
-                            <!--Location-->
-                            <!--end Location-->
-                            <!--Features-->
-                            <!--end Features-->
-
                             <hr>
-
-                            <!--Similar Ads-->
-                            <!--end Similar Ads-->
                         </div>
                         <!--============ End Listing Detail =========================================================-->
                         <!--============ Sidebar ====================================================================-->
@@ -109,13 +118,11 @@
                                         </dl>
                                         <!--end author-->
                                             <div class="form-group">
-                                                <label for="name" class="col-form-label">Name</label>
-                                                <input name="name" type="text" class="form-control" id="name" placeholder="Your Name">
+                                                <input disabled  type="text" class="form-control" id="name" >
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
-                                                <label for="email" class="col-form-label">Email</label>
-                                                <input name="email" type="email" class="form-control" id="email" placeholder="Your Email">
+                                                <input disabled  type="email" class="form-control" id="email" >
                                             </div>
                                             <!--end form-group-->
                                            
@@ -128,6 +135,46 @@
                                 <!--End Author-->
                             </aside>
                         </div>
+                                                    <section>
+                                <h2>Write a Review</h2>
+                                <form class="form">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="subject" class="col-form-label">Subject</label>
+                                                <input name="subject" type="text" class="form-control" id="subject" placeholder="Did you like a deal?">
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-md-8-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="rating" class="col-form-label">Rating</label>
+                                                <select name="rating" id="rating" data-placeholder="Select Rating">
+                                                    <option value="">Select Rating</option>
+                                                    <option value="1" data-option-stars="1">Horrible</option>
+                                                    <option value="2" data-option-stars="2">Average</option>
+                                                    <option value="3" data-option-stars="3">Good</option>
+                                                    <option value="4" data-option-stars="4">Very Good</option>
+                                                    <option value="5" data-option-stars="5">Excellent</option>
+                                                </select>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-md-4-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="review" class="col-form-label">Your Review</label>
+                                                <textarea name="review" id="review" class="form-control" rows="4" placeholder="Good seller, I am satisfied."></textarea>
+                                            </div>
+                                            <!--end form-group-->
+                                        </div>
+                                        <!--end col-md-12-->
+                                    </div>
+                                    <!--end row-->
+                                </form>
+                                <!--end form-->
+                            </section>
                         <!--============ End Sidebar ================================================================-->
                     </div>
                 </div>

@@ -23,19 +23,19 @@
                     <div class="row">
                         <div class="col-md-3">
                             <nav class="nav flex-column side-nav">
-                                <a class="nav-link  icon" href="#">
+                                <a class="nav-link  icon" href="{{url('/offer')}}">
                                     <i class="fa fa-user"></i>My job offers 
                                 </a>
                                 <a class="nav-link icon" href="{{url('/offer')}}">
                                     <i class="fa fa-heart"></i>My Profile
                                 </a>
-                                <a class="nav-link active icon" href="#">
+                                <a class="nav-link active icon" href="{{url('service')}}">
                                     <i class="fa fa-star"></i>My service listings
                                 </a>
                                 <a class="nav-link icon" href="#">
                                     <i class="fa fa-recycle"></i>My reviews 
                                 </a>
-                                <a class="nav-link icon" href="sold-items.html">
+                                <a class="nav-link icon" href="{{route('logout')}}">
                                     <i class="fa fa-check"></i>Logout
                                 </a>
                             </nav>
@@ -50,15 +50,15 @@
                                                 {{ Form::open(['action'=>'ServiceController@store','method'=>'POST']) }}
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="name" class="col-form-label required">Service title</label>
-                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Service Name" required>
+                                                        <label for="name" class="col-form-label ">Service title</label>
+                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Service Name" >
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="name" class="col-form-label required">Service description </label>
-                                                        <input name="desc" type="text" class="form-control" id="name" placeholder="Service title" required>
+                                                        <label for="name" class="col-form-label ">Service description </label>
+                                                        <input name="desc" type="text" class="form-control" id="name" placeholder="Service title" >
                                                     </div>
                                                     <!--end form-group-->
                                                 </div>
@@ -66,7 +66,7 @@
                                             </div>
                                             <!--end row-->
                                             <div class="form-group">
-                                                <label for="location" class="col-form-label required">Category</label>
+                                                <label for="location" class="col-form-label ">Category</label>
                                                 <select  name="category" >
                                                         <option value="">-</option>
                                                             @foreach($category as $item)
@@ -76,12 +76,12 @@
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
-                                                <label for="location" class="col-form-label required">Education </label>
+                                                <label for="location" class="col-form-label ">Education </label>
                                                 <input type="text" name="education" placeholder="Your education">
                                             </div>
                                             <div class="form-group">
-                                                <label for="location" class="col-form-label required">Employment type </label>
-                                                <select name="Employment">
+                                                <label for="location" class="col-form-label ">Employment type </label>
+                                                <select name="employment">
                                                     <option value="Freelancer">Freelancer</option>
                                                     <option value="Part-time">Part-time</option>
                                                     <option value="Full-time">Full-time</option>
@@ -92,7 +92,7 @@
                                                     <div class="row">
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
-                                                                    <label for="title" class="col-form-label required">Province</label>
+                                                                    <label for="title" class="col-form-label ">Province</label>
                                                       
 
                                                                     <!-- <input type="text" name="province"> -->
@@ -107,7 +107,7 @@
                                                             </div>
                                             <div class="col-md-4">
                                                         <div class="form-group">
-                                                                <label for="name" class="col-form-label required ">District</label>
+                                                                <label for="name" class="col-form-label  ">District</label>
                                                                     <!-- <input type="text" name="district">
                                                                 </div> -->
                                                         <select  name="district" >
@@ -123,7 +123,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                         <div class="form-group">
-                                                                <label for="name" class="col-form-label required ">sector</label>
+                                                                <label for="name" class="col-form-label  ">sector</label>
                                                                     <!-- <input type="text" name="district">
                                                                 </div> -->
                                                         <select  name="sector" >
@@ -145,18 +145,18 @@
                                         <section>
                                             <h2>Personal Info</h2>
                                             <div class="form-group">
-                                                <label for="phone" class="col-form-label required">Phone</label>
-                                                <input name="phone" type="text" class="form-control" id="phone" placeholder="Your Phone" required pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" >
+                                                <label for="phone" class="col-form-label ">Phone</label>
+                                                <input name="phone" type="text" class="form-control" id="phone" placeholder="Your Phone"  pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" >
                                             </div>
                                             <!--end form-group-->
                                             <div class="form-group">
-                                                <label for="email" class="col-form-label required">Email</label>
+                                                <label for="email" class="col-form-label ">Email</label>
                                                 <input name="email" type="email" class="form-control" id="email" placeholder="Your Email" >
                                             </div>
                                             <!--end form-group-->
                                              <div class="form-group">
-                                                <label for="email" class="col-form-label required">Languages</label>
-                                                <input name="language" type="text" class="form-control" id="email" placeholder="Your Language" required pattern="[a-zA-Z, ]" >
+                                                <label for="email" class="col-form-label ">Languages</label>
+                                                <input name="language" type="text" class="form-control" id="email" placeholder="Your Language"  pattern="[a-zA-Z, ]" >
                                             </div>
                                         </section>
 

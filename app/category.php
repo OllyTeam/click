@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class category extends Model
 {
-    public function s_listing(){
+	protected $fillable = 
+	[
+		'name'
+	];
+
+
+    public function s_listings(){
         return $this->hasMany('App\s_listing');
     }
 

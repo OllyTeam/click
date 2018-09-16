@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Province;
+use App\s_listing;
 
 class district extends Model
 {
@@ -16,15 +17,15 @@ class district extends Model
         return $this->hasOne('App\s_listing');
     }
 
-    public function sector(){
+    public function sectors(){
         return $this->hasMany('App\sector');
     }
 
-    public function province(){
+    public function provinces(){
         return $this->belongsTo('App\province');
     }
     
-    public function joboffer(){
+    public function joboffers(){
         return $this->hasOne('App\joboffer');
     }
 

@@ -25,7 +25,7 @@ class OfferController extends Controller
         $cat = category::all();
         $id = Auth()->user()->id;
         $offer = joboffer::where('user_id','=',$id)->get();
-        return view('offer.index')->with('offer',$offer);
+        return view('offer.index')->with(['offer'=>$offer,'category'=>$cat,'district'=>$dis,'province'=>$pro]);
     }
 
     /**

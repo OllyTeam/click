@@ -1,8 +1,6 @@
 @include('layouts.top')
 
 
-            <h1 class="well">{{$errors}}</h1>
-
 
                 <div class="page-title">
                     <div class="container">
@@ -26,12 +24,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3">
-                            <nav class="nav flex-column side-nav">
-                                <a class="nav-link active icon" href="#">
-                                    <i class="fa fa-user"></i>My job offers 
-                                </a>
-                                <a class="nav-link icon" href="{{url('/offer')}}">
+                            <nav class="nav flex-column side-nav">  
+                                <a class="nav-link icon" href="#">
                                     <i class="fa fa-heart"></i>My Profile
+                                </a>
+                                <a class="nav-link active icon" href="{{url('offer')}}">
+                                    <i class="fa fa-user"></i>My job offers 
                                 </a>
                                 <a class="nav-link icon" href="bookmarks.html">
                                     <i class="fa fa-star"></i>My service listings

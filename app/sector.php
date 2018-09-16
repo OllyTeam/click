@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class sector extends Model
 {
+
+	
     protected $fillable= ['district_id','name'];
 
     public function district(){

@@ -23,14 +23,17 @@
                     <a class="nav-link active icon" href="{{url('/province')}}">
                         <i class="fa fa-heart"></i>Province
                     </a>
-                <a class="nav-link icon" href="{{url('/district')}}">
+                    <a class="nav-link icon" href="{{url('/district')}}">
                         <i class="fa fa-star"></i>district
                     </a>
                     <a class="nav-link icon" href="{{url('/sector')}}">
                         <i class="fa fa-recycle"></i>Sector
                     </a>
-                <a class="nav-link icon" href="{{url('/category')}}">
+                    <a class="nav-link icon" href="{{url('/category')}}">
                         <i class="fa fa-check"></i>Category
+                    </a>
+                    <a href="{{route('logout')}}">
+                          Logout
                     </a>
                </nav>
             </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\category;
 use App\district;
 use App\s_listing;
+use App\User;
 class PostsController extends Controller
 {
     //
@@ -18,13 +19,14 @@ class PostsController extends Controller
 
         $service = s_listing::all();
 
+        $user = User::all();
+
         $data = array(
             ['category' => $category ],
             ['district' => $district ],
-            ['service' => $service ]
-         );
-        //dd($data);
-        return view('index',['category'=>$category,'district'=>$district,'service'=>$service]);
+            ['service' => $service ]);
+
+        return view('index',['category'=>$category,'district'=>$district,'service'=>$service,'user'=>$user]);
     }
     
     public function contact() {

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class province extends Model
 {
+
+	protected $fillable = ['name']; 
     public function district(){
         return $this->hasMany('App\district');
     }

@@ -96,28 +96,10 @@
          <h2>Categories</h2>
                                 <dl class="columns-3">
                                 @foreach($category as $item)    
-                                 float-xs-none<dt><img src="assets/icons/category-real-estate-b.png" width="" alt=""></dt>
-                                    <dd><a href="{{url('categorylist',$item->id)}}">{{$item->name}}</a></dd>
+                                 <dt><a href="{{url('categorylist',$item->id)}}">{{$item->name}}</a></dt>
+                                 <dd><img src="assets/icons/category-real-estate-b.png" width="" alt=""></dd>
                                 @endforeach    
-                                </dl>
-         <!--end categories-list-->
-
-
-   <!--       <ul class="categories-list clearfix">
-                     @foreach($category as $item)
-                        <li>
-                            <i class="category-icon">
-                                <img src="assets/icons/category-real-estate-b.png" width="" alt="">
-                            </i>
-
-                            <h3 style="margin-top:4px;"><a href="{{url('categorylist',$item->id)}}">{{$item->name}}</a></h3>
-                        </li>
-                     @endforeach
-
-                  </ul>      
- -->
-
-
+                                </dl
       </div>
       <!--end container-->
    </section>
@@ -128,30 +110,26 @@
       <div class="container">
          <div class="row flex-column-reverse flex-md-row">
             <div class="col-md-9">
-               <!--============SectionTitle===============================================================-->
+               <!--============SectionTitle===================================================================-->
                <div class="section-title clearfix">
-                  <div class="float-left float-xs-none">
-                     <h2>Recent Ads</h2>
-                  </div>
-                  <div class="float-right float-xs-none d-xs-none thumbnail-toggle">
-                     <a href="#" class="change-class" data-change-from-class="list" data-change-to-class="grid" data-parent-class="items">
-                     <i class="fa fa-th"></i>
-                     </a>
-                     <a href="#" class="change-class active" data-change-from-class="grid" data-change-to-class="list" data-parent-class="items">
-                     <i class="fa fa-th-list"></i>
-                     </a>
-                  </div>
+                     <h1>Recent Ads</h1>
                </div>
                <!--============ Items ==========================================================================-->
                @foreach($service as $item)                            
                <div class="items list grid-xl-3-items grid-lg-3-items grid-md-2-items">
-                  <div class="item">
-                     <div class="ribbon-featured">Service </div>
+                  <div class="item" >
+                     
                      <!--end ribbon-->
                      <div class="wrapper">
                         <div class="image">
                            <h3>
-                              <a href="#" class="tag category">Real Estate</a>
+                              <a href="#" class="tag category">
+                                 @foreach($category as $item2)
+                                    @if($item->category_id == $item2->id)
+                                       {{$item2->name}}
+                                    @endif
+                                 @endforeach
+                              </a>
                               <a href="single-listing-1.html" class="title">{{$item->service_title}}</a>
                               <span class="tag">Service</span>
                            </h3>
@@ -160,17 +138,27 @@
                            </a>
                         </div>
                         <!--end image-->
-                        <h4 class="location">
-                           <a href="#">{{$item->district_id}}</a>
+                        <h4 class="">
+                           <a href="#">
+                              @foreach($district as $item2)
+                                 @if($item->district_id == $item2->id)
+                                    {{$item2->name}}
+                                 @endif
+                              @endforeach
+                           </a>
                         </h4>
-                        <div class="price">$80</div>
+                        
                         <div class="meta">
                            <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
+                              <i class="fa fa-calendar-o"></i>{{$item->created_at}}
                            </figure>
                            <figure>
                               <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
+                              @foreach($user as $item2)
+                                 @if($item->user_id ==  $item2->id)
+                                  {{$item2->lname}}
+                                 @endif
+                              @endforeach
                               </a>
                            </figure>
                         </div>
@@ -183,347 +171,13 @@
                      </div>
                   </div>
                   <!--end item-->
+               </div>
                   @endforeach 
-                  <div class="item">
-                     <div class="ribbon-featured">Service Listing</div>
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  <!--end item-->
-                  <div class="item">
-                     <div class="ribbon-featured">Job Offer</div>
-                     <!--end ribbon-->
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  <!--end item-->
-                  <div class="item">
-                     <div class="ribbon-featured">Service Listing</div>
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  <!--end item-->
-                  <div class="item">
-                     <div class="ribbon-featured">Job Offer</div>
-                     <!--end ribbon-->
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  {{-- <!--end item-->
-                  <div class="item">
-                     <div class="ribbon-featured">Service Listing</div>
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  --}}
-                  <!--end item-->
-                  {{-- 
-                  <div class="item">
-                     <div class="ribbon-featured">Job Offer</div>
-                     <!--end ribbon-->
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  <!--end item--> --}}
-                  <div class="item">
-                     <div class="ribbon-featured">Service Listing</div>
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  <!--end item-->
-                  <div class="item">
-                     <div class="ribbon-featured">Job Offer</div>
-                     <!--end ribbon-->
-                     <div class="wrapper">
-                        <div class="image">
-                           <h3>
-                              <a href="#" class="tag category">Real Estate</a>
-                              <a href="single-listing-1.html" class="title">Real estate Expert Job</a>
-                              <span class="tag">Offer</span>
-                           </h3>
-                           <a href="single-listing-1.html" class="image-wrapper background-image">
-                           <img src="assets/img/image-01.jpg" alt="">
-                           </a>
-                        </div>
-                        <!--end image-->
-                        <h4 class="location">
-                           <a href="#">Gasabo, Kigali</a>
-                        </h4>
-                        <div class="price">$80</div>
-                        <div class="meta">
-                           <figure>
-                              <i class="fa fa-calendar-o"></i>02.05.2018
-                           </figure>
-                           <figure>
-                              <a href="#">
-                              <i class="fa fa-user"></i>Jane Doe
-                              </a>
-                           </figure>
-                        </div>
-                        <!--end meta-->
-                        <div class="description">
-                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis lobortis</p>
-                        </div>
-                        <!--end description-->
-                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
-                     </div>
-                  </div>
-                  <!--end item-->
-               </div>
-               <!--============ End Items ==============================================================-->
-               <div class="page-pagination">
-                  <nav aria-label="Pagination">
-                     <ul class="pagination">
-                        <li class="page-item">
-                           <a class="page-link" href="#" aria-label="Previous">
-                           <span aria-hidden="true">
-                           <i class="fa fa-chevron-left"></i>
-                           </span>
-                           <span class="sr-only">Previous</span>
-                           </a>
-                        </li>
-                        <li class="page-item active">
-                           <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item">
-                           <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                           <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                           <a class="page-link" href="#" aria-label="Next">
-                           <span aria-hidden="true">
-                           <i class="fa fa-chevron-right"></i>
-                           </span>
-                           <span class="sr-only">Next</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </nav>
-               </div>
-               <!--end page-pagination-->
             </div>
             <!--end col-md-9-->
             <div class="col-md-3">
                <!--============ Side Bar ===============================================================-->
-               <aside class="sidebar">
+               <!-- <aside class="sidebar">
                   <section>
                      <h2></h2>
                      <img src="assets/img/banner.jpg">
@@ -532,7 +186,7 @@
                      <hr>
                      <img src="assets/img/banner.jpg">
                   </section>
-               </aside>
+               </aside> -->
                <!--============ End Side Bar ===========================================================-->
             </div>
             <!--end col-md-3-->
