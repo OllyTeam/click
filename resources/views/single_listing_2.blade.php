@@ -135,7 +135,7 @@
                                 <!--End Author-->
                             </aside>
                         </div>
-                                                    <section>
+                            <section>
                                 <h2>Write a Review</h2>
                                 <form class="form">
                                     <div class="row">
@@ -147,20 +147,6 @@
                                             <!--end form-group-->
                                         </div>
                                         <!--end col-md-8-->
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="rating" class="col-form-label">Rating</label>
-                                                <select name="rating" id="rating" data-placeholder="Select Rating">
-                                                    <option value="">Select Rating</option>
-                                                    <option value="1" data-option-stars="1">Horrible</option>
-                                                    <option value="2" data-option-stars="2">Average</option>
-                                                    <option value="3" data-option-stars="3">Good</option>
-                                                    <option value="4" data-option-stars="4">Very Good</option>
-                                                    <option value="5" data-option-stars="5">Excellent</option>
-                                                </select>
-                                            </div>
-                                            <!--end form-group-->
-                                        </div>
                                         <!--end col-md-4-->
                                         <div class="col-md-12">
                                             <div class="form-group">

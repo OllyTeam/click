@@ -22,7 +22,7 @@
 <div class="col-md-2 col-sm-2">
 <div class="form-group">
 <label for="what" class="col-form-label">Search</label>
-<input name="keyword" type="text" class="form-control" id="what" placeholder="What are you looking for?">
+<input name="keyword" type="text" class="form-control" id="what" placeholder="What are you looking for?" required="">
 </div>
 <!--end form-group-->
 </div>
@@ -98,9 +98,7 @@
                                 @foreach($category as $item)    
                                  <dt><a href="{{url('categorylist',$item->id)}}">{{$item->name}}</a></dt>
                                  <dd>
-                                    <i class="category-icon">
-                                    <img src="assets/icons/category-real-estate-b.png" width="" alt="">
-                                 </i>
+                                    <i class="fa fa-list" style="color: darkblue"></i>                                
                                  </dd>
                                 @endforeach    
                                 </dl

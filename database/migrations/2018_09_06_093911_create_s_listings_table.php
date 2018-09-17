@@ -22,10 +22,11 @@ class CreateSListingsTable extends Migration
             $table->integer('district_id');
             $table->integer('province_id');
             $table->string('edu_level');
-            $table->string('emp_type');
+            $table->string('employment_type');
             $table->integer('years_exp');
             $table->string('email');
             $table->integer('phone');
+            $table->string('language');
             $table->timestamps();
         });
     }

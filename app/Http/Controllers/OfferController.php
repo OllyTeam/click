@@ -10,6 +10,7 @@ use App\province;
 use App\sector;
 use App\joboffer;
 use App\category;
+use App\all;
 
 class OfferController extends Controller
 {
@@ -79,6 +80,8 @@ class OfferController extends Controller
             $job->email = $request->input("email");
             $job->phone = $request->input("phone");
             $job->user_id = Auth()->user()->id;
+
+
             if($job->save()){
                 return redirect('offer');
             }else{
