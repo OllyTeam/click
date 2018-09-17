@@ -30,7 +30,7 @@ class ProvinceController extends Controller
             if(Auth::check()){
 
 
-                return view('province\create');
+                return view('province.create');
 
 
             }else{

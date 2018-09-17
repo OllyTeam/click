@@ -39,4 +39,9 @@ class s_listing extends Model
     public function province(){
     	return $this->belongsTo('App\province');
     }
+
+    public function joboffers()
+    {
+        return $this->belongsTo('App\joboffer','id');
+    }
 }

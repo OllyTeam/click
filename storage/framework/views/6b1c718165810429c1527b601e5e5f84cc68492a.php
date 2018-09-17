@@ -1,4 +1,4 @@
-@include('layouts.top')
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
                 <!--============ Hero Form ==========================================================================-->
 
@@ -7,7 +7,7 @@
                 <!--============ Page Title =========================================================================-->
                 <div class="page-title">
                     <div class="container">
-                        <h1>My Service</h1>
+                        <h1>My Offer</h1>
                     </div>
                     <!--end container-->
                 </div>
@@ -31,10 +31,10 @@
                                 <a class="nav-link  icon" href="">
                                     <i class="fa fa-user"></i>My Profile
                                 </a>
-                                <a class="nav-link  icon" href="{{url('/offer')}}">
+                                <a class="nav-link active icon" href="<?php echo e(url('/offer')); ?>">
                                     <i class="fa fa-heart"></i>My job offers
                                 </a>
-                                <a class="nav-link active icon" href="{{url('/service')}}">
+                                <a class="nav-link icon" href="<?php echo e(url('/service')); ?>">
                                     <i class="fa fa-star"></i>My service listings
                                 </a>
                                 <a class="nav-link icon" href="#">
@@ -51,58 +51,61 @@
                             
                             <!--============ Items ==========================================================================-->
                             <div class="items list compact grid-xl-3-items grid-lg-2-items grid-md-2-items">
-&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{{url('service/create')}}" class="btn btn-primary">Add Service</a>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="<?php echo e(url('offer/create')); ?>" class="btn btn-primary">Add offer</a>
 <br>
 <br>
-                                @foreach($service as $item)
+                                <?php $__currentLoopData = $offer; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="item">
-                                    <div class="ribbon-featured">Service</div>
+                                    <div class="ribbon-featured">Recent</div>
                                     <!--end ribbon-->
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
                                                 <a href="#" class="tag category">
-                                               {{$item->category->name}}
+                                                        <?php echo e($item->category->name); ?>
+
                                                 </a>
-                                                <a href="{{url('/service',$item->id)}}" class="title">{{$item->title}}</a>
+                                                <a href="<?php echo e(url('/offer',$item->id)); ?>" class="title"><?php echo e($item->offertitle); ?></a>
+                                                <span class="tag">Offer</span>
                                             </h3>
-                                            <a href="#" class="image-wrapper background-image">
+                                            <a href="single-listing-1.html" class="image-wrapper background-image">
                                                 <img src="assets/img/image-01.jpg" alt="">
                                             </a>
                                         </div>
                                         <!--end image-->
                                         <h4 class="">
-                                            <a  href="#">
-                                                {{$item->district->name}}
-                                                 ,
-                                                {{$item->province->name}}
+                                            <a style="text-decoration:none;">
+                                                <?php echo e($item->district->name); ?>,<?php echo e($item->province->name); ?>
+
                                             </a>
                                         </h4>
                                         <div class="admin-controls">
-                                            <a href="{{url('/service',$item->id)}}">
+                                            <a href="<?php echo e(url('/offer',$item->id)); ?>">
                                                 <i class="fa fa-pencil"></i>Edit
                                             </a>
                                             <a href="#" class="ad-remove">
-                                                <i class="fa fa-trash"></i>Delete
+                                                <i class="fa fa-trash"></i>Remove
                                             </a>
                                         </div>
                                         <!--end admin-controls-->
                                         <div class="description">
-                                            <p>{{$item->description}}</p>
+                                            <p><?php echo e($item->description); ?></p>
                                         </div>
                                         <!--end description-->
-                                        <a href="#" class="detail text-caps underline">Detail</a>
+                                        <a href="single-listing-1.html" class="detail text-caps underline">Detail</a>
                                     </div>
                                 </div>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <!--end item-->
-                                    </div> 
+                                    </div>
                                 </div>
                                 <!--end item-->
                             </div>
                             <!--end items-->
                         </div>
                         <!--end col-md-9-->
+
+                        
                     </div>
                     <!--end row-->
                 </div>
@@ -112,4 +115,4 @@
         </section>
         <!--end content-->
 
-@include('layouts.bottom')
+<?php echo $__env->make('layouts.bottom', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

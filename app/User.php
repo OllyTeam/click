@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fname','lname','email','dob','gender','phone', 'password',
+        'fname','lname','email','dob','gender','phone', 'password','status','active'
     ];
 
     /**
@@ -32,7 +33,7 @@ class User extends Authenticatable
         return $this->hasMany('App\s_listing');
     }
 
-    public function joboffer(){
-        return $this->hasOne('App\joboffer');
+    public function Alldata(){
+        return $this->hasOne('App\Alldata');
     }
 }

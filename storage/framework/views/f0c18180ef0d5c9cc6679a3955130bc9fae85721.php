@@ -4,12 +4,12 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="author" content="ThemeStarz">
-      <link href=" {{ asset('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Varela+Round')}}" rel="stylesheet">
-      <link rel="stylesheet" href=" {{asset('assets/bootstrap/css/bootstrap.css')}}" type="text/css">
+      <link href=" <?php echo e(asset('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Varela+Round')); ?>" rel="stylesheet">
+      <link rel="stylesheet" href=" <?php echo e(asset('assets/bootstrap/css/bootstrap.css')); ?>" type="text/css">
       <link rel="stylesheet" href=" {asset('assets/fonts/font-awesome.css')}}" type="text/css">
-      <link rel="stylesheet" href=" {{asset('assets/css/selectize.css')}}" type="text/css">
-      <link rel="stylesheet" href=" {{asset('assets/css/style.css')}}">
-      <link rel="stylesheet" href=" {{asset('assets/css/user.css')}}">
+      <link rel="stylesheet" href=" <?php echo e(asset('assets/css/selectize.css')); ?>" type="text/css">
+      <link rel="stylesheet" href=" <?php echo e(asset('assets/css/style.css')); ?>">
+      <link rel="stylesheet" href=" <?php echo e(asset('assets/css/user.css')); ?>">
       <title>The Link360 - Job Offer & Service Listing</title>
    </head>
    <body>
@@ -30,30 +30,11 @@
                      </li>
                   </ul>
                   <!--end left-->
-                  {{-- 
-                  <ul class="right">
-                     <li>
-                        <a href="{{url('my_ads')}}">
-                        <i class="fa fa-heart"></i>My Ads
-                        </a>
-                     </li>
-                     <li>
-                        <a href="{{url('sign_in')}}">
-                        <i class="fa fa-sign-in"></i>Sign In
-                        </a>
-                     </li>
-                     <li>
-                        <a href="{{url('register')}}">
-                        <i class="fa fa-pencil-square-o"></i>Register
-                        </a>
-                     </li>
-                     --}}
+                  
                      <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                         <div class="container">
-                           {{-- <a class="navbar-brand" href="{{ url('/') }}">
-                           {{ config('app.name', 'Laravel') }}
-                           </a> --}}
-                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                           
+                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="<?php echo e(__('Toggle navigation')); ?>">
                            <span class="navbar-toggler-icon"></span>
                            </button>
                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -63,37 +44,36 @@
                               <!-- Right Side Of Navbar -->
                               <ul class="navbar-nav ml-auto">
                                  <!-- Authentication Links -->
-                                 @guest
+                                 <?php if(auth()->guard()->guest()): ?>
                                  <li class="secondary-navigation">
-                                    <a class="fa fa-sign-in" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="fa fa-sign-in" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a>
                                  </li>
                                  <li class="secondary-navigation">
-                                    <a class="fa fa-pencil-square-o" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="fa fa-pencil-square-o" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a>
                                  </li>
-                                 @else
+                                 <?php else: ?>
                                  <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <?php echo e(Auth::user()->name); ?> <span class="caret"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                       <a class="dropdown-item" href="{{ route('logout') }}"
+                                       <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                           onclick="event.preventDefault();
                                           document.getElementById('logout-form').submit();">
-                                       {{ __('Logout') }}
+                                       <?php echo e(__('Logout')); ?>
+
                                        </a>
-                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                          @csrf
+                                       <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                          <?php echo csrf_field(); ?>
                                        </form>
                                     </div>
                                  </li>
-                                 @endguest
+                                 <?php endif; ?>
                               </ul>
                            </div>
                         </div>
                      </nav>
-                     {{-- 
-                  </ul>
-                  --}}
+                     
                   <!--end right-->
                </div>
                <!--end container-->
@@ -117,53 +97,53 @@
                <!--end container-->
             </div>
             <!--============ End Main Navigation ================================================================-->
-            <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+            <form method="POST" action="<?php echo e(route('register')); ?>" aria-label="<?php echo e(__('Register')); ?>">
             <div class="form-group row">
-               <label for="fname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+               <label for="fname" class="col-md-4 col-form-label text-md-right"><?php echo e(__('First Name')); ?></label>
                <div class="col-md-6">
-                  <input id="fname" type="text" class="form-control{{ $errors->has('fname') ? ' is-invalid' : '' }}" placeholder="First Name" name="fname" value="{{ old('fname') }}" required autofocus>
-                  @if ($errors->has('fname'))
+                  <input id="fname" type="text" class="form-control<?php echo e($errors->has('fname') ? ' is-invalid' : ''); ?>" placeholder="First Name" name="fname" value="<?php echo e(old('fname')); ?>" required autofocus>
+                  <?php if($errors->has('fname')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('fname') }}</strong>
+                  <strong><?php echo e($errors->first('fname')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group row">
-               <label for="lname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+               <label for="lname" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Last Name')); ?></label>
                <div class="col-md-6">
-                  <input id="lname" type="text" class="form-control{{ $errors->has('lname') ? ' is-invalid' : '' }}" name="lname" value="{{ old('lname') }}" placeholder="Last Name" required autofocus>
-                  @if ($errors->has('lname'))
+                  <input id="lname" type="text" class="form-control<?php echo e($errors->has('lname') ? ' is-invalid' : ''); ?>" name="lname" value="<?php echo e(old('lname')); ?>" placeholder="Last Name" required autofocus>
+                  <?php if($errors->has('lname')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('lname') }}</strong>
+                  <strong><?php echo e($errors->first('lname')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group row">
-               <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail ') }}</label>
+               <label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail ')); ?></label>
                <div class="col-md-6">
-                  <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-                  @if ($errors->has('email'))
+                  <input id="email" type="email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required>
+                  <?php if($errors->has('email')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('email') }}</strong>
+                  <strong><?php echo e($errors->first('email')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group row">
-               <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
+               <label for="date" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Date Of Birth')); ?></label>
                <div class="col-md-6">
-                  <input id="dob" type="date" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="dob" value="{{ old('date') }}" required autofocus>
-                  @if ($errors->has('date'))
+                  <input id="dob" type="date" class="form-control<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" name="dob" value="<?php echo e(old('date')); ?>" required autofocus>
+                  <?php if($errors->has('date')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('date') }}</strong>
+                  <strong><?php echo e($errors->first('date')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group row">
-               <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+               <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Gender')); ?></label>
                <label class="framed">
                <input type="radio" name="type" value="1" required>
                Male
@@ -173,62 +153,54 @@
                Female
                </label>
                <div class="col-md-6">
-                  @if ($errors->has('gender'))
+                  <?php if($errors->has('gender')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('gender') }}</strong>
+                  <strong><?php echo e($errors->first('gender')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group row">
-               <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+               <label for="name" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Phone')); ?></label>
                <div class="col-md-6">
-                  <input id="phone" type="number"  class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" autofocus>
-                  @if ($errors->has('phone'))
+                  <input id="phone" type="number"  class="form-control<?php echo e($errors->has('phone') ? ' is-invalid' : ''); ?>" name="phone" value="<?php echo e(old('phone')); ?>" autofocus>
+                  <?php if($errors->has('phone')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('phone') }}</strong>
+                  <strong><?php echo e($errors->first('phone')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group">
-               {{-- <label for="phone" class="col-form-label required">Phone</label> --}}
-               {{-- <input name="status" type="tel" class="form-control" id="ststus" value="2" required> --}}
+               
+               
                <div class="col-md-6">
-                  <input id="status" type="hidden" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="status" value="2" required autofocus>
-                  {{-- @if ($errors->has('st'))
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('st') }}</strong>
-                  </span>
-                  @endif --}}
+                  <input id="status" type="hidden" class="form-control<?php echo e($errors->has('phone') ? ' is-invalid' : ''); ?>" name="status" value="2" required autofocus>
+                  
                </div>
             </div>
             <!--end form-group-->
             <div class="form-group">
-               {{-- <label for="phone" class="col-form-label required">Phone</label> --}}
-               {{-- <input name="active" type="hidden" class="form-control" id="active" value="0" required> --}}
+               
+               
                <div class="col-md-6">
-                  <input id="active" type="hidden" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="active" value="0" required autofocus>
-                  {{-- @if ($errors->has('phone'))
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('phone') }}</strong>
-                  </span>
-                  @endif --}}
+                  <input id="active" type="hidden" class="form-control<?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" name="active" value="0" required autofocus>
+                  
                </div>
             </div>
             <div class="form-group row">
-               <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+               <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
                <div class="col-md-6">
-                  <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-                  @if ($errors->has('password'))
+                  <input id="password" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" required>
+                  <?php if($errors->has('password')): ?>
                   <span class="invalid-feedback" role="alert">
-                  <strong>{{ $errors->first('password') }}</strong>
+                  <strong><?php echo e($errors->first('password')); ?></strong>
                   </span>
-                  @endif
+                  <?php endif; ?>
                </div>
             </div>
             <div class="form-group row">
-               <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+               <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Confirm Password')); ?></label>
                <div class="col-md-6">
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                </div>
@@ -236,13 +208,16 @@
             <div class="form-group row mb-0">
                <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary">
-                  {{ __('Register') }}
+                  <?php echo e(__('Register')); ?>
+
                   </button>
-                  {{ csrf_field() }}
+                  <?php echo e(csrf_field()); ?>
+
                </div>
             </div>
-{!! Form::close() !!}
+<?php echo Form::close(); ?>
+
          </div>
       </div>
       
-@include('layouts.bottom')
+<?php echo $__env->make('layouts.bottom', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

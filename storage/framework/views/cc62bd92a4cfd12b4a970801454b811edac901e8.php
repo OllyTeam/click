@@ -1,4 +1,4 @@
-@include('layouts.top')
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <div class="page-title">
    <div class="container">
       <h1>Job Offers</h1>
@@ -24,10 +24,10 @@
                <a class="nav-link icon" href="#">
                <i class="fa fa-heart"></i>My Profile
                </a>
-               <a class="nav-link active icon" href="{{url('offer')}}">
+               <a class="nav-link active icon" href="<?php echo e(url('offer')); ?>">
                <i class="fa fa-user"></i>My job offers 
                </a>
-               <a class="nav-link icon" href="{{url('/service')}}">
+               <a class="nav-link icon" href="<?php echo e(url('/service')); ?>">
                <i class="fa fa-star"></i>My service listings
                </a>
                <a class="nav-link icon" href="change-password.html">
@@ -45,18 +45,19 @@
                   <h2>Insert Job Offer Information</h2>
                   <section>
                      <div class="row">
-                        {{ Form::open(['action'=>'OfferController@store','method'=>'POST']) }}
+                        <?php echo e(Form::open(['action'=>'OfferController@store','method'=>'POST'])); ?>
+
                         <div class="col-md-12">
                            <div class="form-group">
                               <label for="name" class="col-form-label required">Offer Employer Owner Name / Company Name</label>
-                              <input name="name" type="text" class="form-control" id="name" value="{{old('name')}}" placeholder="Your Name" required>
+                              <input name="name" type="text" class="form-control" id="name" value="<?php echo e(old('name')); ?>" placeholder="Your Name" required>
                            </div>
                            <!--end form-group-->
                         </div>
                         <div class="col-md-12">
                            <div class="form-group">
                               <label for="name" class="col-form-label required">Offer Title </label>
-                              <input name="title" type="text" class="form-control" id="name" value="{{old('title')}}" placeholder="Your title" required>
+                              <input name="title" type="text" class="form-control" id="name" value="<?php echo e(old('title')); ?>" placeholder="Your title" required>
                            </div>
                            <!--end form-group-->
                         </div>
@@ -67,9 +68,9 @@
                         <label for="location" class="col-form-label required">Category</label>
                         <select  name="category" >
                            <option value="">-</option>
-                           @foreach($category as $item)
-                           <option value="{{$item->id}}">{{$item->name}}</option>
-                           @endforeach
+                           <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                           <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                      </div>
                      <!--end form-group-->
@@ -89,9 +90,9 @@
                                  <!-- <input type="text" name="province"> -->
                                  <select  name="province" id="province" data-dependent="district" >
                                     <option value="">-</option>
-                                    @foreach($province as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $province; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                  </select>
                               </div>
                               <!--end form-group-->
@@ -154,11 +155,13 @@
                             <div class="btn btn-framed btn-primary small">Upload a picture</div> 
                         </div>
                         </div> -->
-                     {{  csrf_field() }}
+                     <?php echo e(csrf_field()); ?>
+
                   </div>
                   <!--end col-md-3-->
                </div>
-               {{ Form::close() }}
+               <?php echo e(Form::close()); ?>
+
             </div>
          </div>
          <!--end row-->
@@ -186,7 +189,7 @@
                     var _token = $('input[name="_token"]').val();
 
                     $.ajax({
-                        url: "{{url('dynamicdata.fetch')}}",
+                        url: "<?php echo e(url('dynamicdata.fetch')); ?>",
                         method: "POST",
                         data: {
                             select: select,
@@ -229,5 +232,5 @@
         </script>
 
 
-@include('layouts.bottom')
+<?php echo $__env->make('layouts.bottom', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 

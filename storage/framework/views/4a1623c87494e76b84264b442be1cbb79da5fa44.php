@@ -1,4 +1,4 @@
-@include('layouts.top')
+<?php echo $__env->make('layouts.top', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 <!--============ End Main Navigation ================================================================-->
 <!--============ Page Title =========================================================================-->
@@ -12,7 +12,8 @@
 </div>
 <!--============ End Page Title =====================================================================-->
 <!--============ Hero Form ==========================================================================-->
-{!! Form::open(['url'=>'search','method'=>'POST','class'=>'hero-form form']) !!}
+<?php echo Form::open(['url'=>'search','method'=>'POST','class'=>'hero-form form']); ?>
+
 
    <div class="container">
       <!--Main Form-->
@@ -33,9 +34,9 @@
 <label for="category" class="col-form-label">Category?</label>
 <select name="category" id="category" data-placeholder="Select Category">
 <option value="">-</option>
-@foreach($category as $item)
-<option value="{{$item->id}}">{{$item->name}}</option>
-@endforeach
+<?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </select>
 </div>
 <!--end form-group-->
@@ -55,9 +56,9 @@
 <label for="location" class="col-form-label">location?</label>
 <select name="location" id="category" data-placeholder="Select Category">
 <option value="">-</option>
-@foreach($district as $item)
-<option value="{{$item->id}}">{{$item->name}}</option>
-@endforeach
+<?php $__currentLoopData = $district; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </select>
 </div>
 <!--end form-group-->
@@ -73,7 +74,8 @@
 <!--end main-search-form-->
 </div>
 <!--end container-->
-{{ Form::close() }}
+<?php echo e(Form::close()); ?>
+
 <!--============ End Hero Form ======================================================================-->
 <div class="background">
    <div class="background-image original-size">
@@ -95,12 +97,12 @@
       <div class="container">
          <h2>Categories</h2>
                                 <dl class="columns-3 categories-list clearfix">
-                                @foreach($category as $item)    
-                                 <dt><a href="{{url('categorylist',$item->id)}}">{{$item->name}}</a></dt>
+                                <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>    
+                                 <dt><a href="<?php echo e(url('categorylist',$item->id)); ?>"><?php echo e($item->name); ?></a></dt>
                                  <dd>
                                     <i class="fa fa-list" style="color: darkblue"></i>                                
                                  </dd>
-                                @endforeach    
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
                                 </dl
       </div>
       <!--end container-->
@@ -117,7 +119,7 @@
                      <h1>Recent Ads</h1>
                </div>
                <!--============ Items ==========================================================================-->
-               @foreach($service as $item)                            
+               <?php $__currentLoopData = $service; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                            
                <div class="items list grid-xl-3-items grid-lg-3-items grid-md-2-items">
                   <div class="item" >
                      
@@ -126,15 +128,16 @@
                         <div class="image">
                            <h3>
                               <a href="#" class="tag category">
-                                 {{$item->category->name}}
+                                 <?php echo e($item->category->name); ?>
+
                               </a>
-                              <a href="single-listing-1.html" class="title">{{$item->title}}</a>
+                              <a href="single-listing-1.html" class="title"><?php echo e($item->title); ?></a>
                               <span class="tag">
-                                 @if($item->type == 1)
+                                 <?php if($item->type == 1): ?>
                                     Offer
-                                 @else
+                                 <?php else: ?>
                                     Service
-                                 @endif
+                                 <?php endif; ?>
                               </span>
                            </h3>
                            <a href="single-listing-1.html" class="image-wrapper background-image">
@@ -144,31 +147,34 @@
                         <!--end image-->
                         <h4 class="">
                            <a href="#">
-                              {{$item->district->name}},{{$item->province->name}}
+                              <?php echo e($item->district->name); ?>,<?php echo e($item->province->name); ?>
+
                            </a>
                         </h4>
                         
                         <div class="meta">
                            <figure>
-                              <i class="fa fa-calendar-o"></i>{{$item->created_at}}
+                              <i class="fa fa-calendar-o"></i><?php echo e($item->created_at); ?>
+
                            </figure>
                            <figure>
                               <a href="#">
-                                    {{$item->user->fname}}
+                                    <?php echo e($item->user->fname); ?>
+
                               </a>
                            </figure>
                         </div>
                         <!--end meta-->
                         <div class="description">
-                           <p>{{$item->_description}}</p>
+                           <p><?php echo e($item->_description); ?></p>
                         </div>
                         <!--end description-->
-                        <a href=" {{ url ('/single',$item->id)}} " class="detail text-caps underline">Detail</a>
+                        <a href=" <?php echo e(url ('/single',$item->id)); ?> " class="detail text-caps underline">Detail</a>
                      </div>
                   </div>
                   <!--end item-->
                </div>
-                  @endforeach 
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
             </div>
             <!--end col-md-9-->
             <div class="col-md-3">

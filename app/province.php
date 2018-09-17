@@ -7,16 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class province extends Model
 {
 
-	protected $fillable = ['name']; 
-    public function district(){
+	protected $fillable = ['name'];
+
+
+
+    public function districts(){
         return $this->hasMany('App\district');
     }
 
-    // public function joboffer(){
-    //     return $this->hasMany('App\joboffer');
-    // }
 
-    public function joboffer(){
-        return $this->hasOne('App\joboffer');
+
+    public function Alldata(){
+        return $this->hasOne('App\Alldata');
     }
+    
 }

@@ -18,15 +18,14 @@ class CreateSListingsTable extends Migration
             $table->string('service_title');
             $table->string('service_desc');
             $table->integer('category_id');
+            $table->string('employment_type');
             $table->integer('sector_id');
             $table->integer('district_id');
             $table->integer('province_id');
-            $table->string('edu_level');
-            $table->string('employment_type');
-            $table->integer('years_exp');
             $table->string('email');
             $table->integer('phone');
             $table->string('language');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

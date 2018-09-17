@@ -44,7 +44,7 @@
                             <!--Description-->
                             <section>
                                 <h2>Description</h2>
-                            <p style="min-height: 100px">{{$service->service_desc}}</p>
+                            <p style="min-height: 100px">{{$service->description}}</p>
                             </section>
                             <!--end Description-->
                             <!--Details-->

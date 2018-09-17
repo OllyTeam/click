@@ -19,4 +19,9 @@ class category extends Model
     public function joboffer(){
         return $this->hasMany('App\joboffer');
     }
+
+    public function Alldata(){
+        return $this->hasMany('App\Alldata');
+    }
+    
 }

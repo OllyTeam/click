@@ -6,7 +6,7 @@ use App\s_listing;
 use App\user;
 use App\district;
 use App\category;
-use App\joboffer;
+use App\Alldata;
 use App\sector;
 
 
@@ -20,7 +20,15 @@ use App\sector;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/offer','OfferController');
+Route::resource('/province','ProvinceController'); // route for province
+
+Route::resource('/district','DistrictController'); // route for district
+
+Route::resource('/sector','SectorController');  //route for sector
+
+Route::resource('/offer','OfferController');	//Route for offer
+
+Route::resource('/category','CategoryController');  //Route for category
 
 
 Route::post('/search',function(Request $request){
@@ -34,23 +42,25 @@ Route::post('/search',function(Request $request){
 
 	if ($request->input("type") == 1) {
 
-	$results = DB::select('select * from joboffers where offertitle LIKE :title and category_id = :category  and district_id = :district', ['title' => $title,'category'=> $category, 'district' => $district]);
+	$results = Alldata::where('category_id',$category)->where('district_id',$district)
+							                          ->where('type',1)
+							                          ->where('title','LIKE',$title)
+							                          ->get(); 
 
-	$dis = district::all();
-	$sec = sector::all();
-	$cat = category::all();
+	return $results;
 
-	return view('search.result',['results'=>$results, 'type'=>$type, 'district'=>$dis,'sector'=>$sec,'category'=>$cat]);
-		
+	// DB::select('select * from joboffers where offertitle LIKE :title and category_id = :category  and district_id = :district', ['title' => $title,'category'=> $category, 'district' => $district]);
+
+
+	// return view('search.result',['results'=>$results, 'type'=>$type, 'district'=>$dis,'sector'=>$sec,'category'=>$cat]);
+
 	}else{
 
-	$dis = district::all();
-	$sec = sector::all();
-	$cat = category::all();
-		
-	$results = DB::select('select * from s_listings where service_title LIKE :title and category_id = :category  and district_id = :district', ['title' => $title,'category'=> $category, 'district' => $district]);
-
-
+	
+	$results = Alldata::where('category_id',$category)->where('district_id',$district)
+													  ->where('type',2)
+													  ->where('title','LIKE',$title)
+													  ->get(); 
 	return $results;
 	//return view('search.result',['results'=>$results, 'type'=>$type, 'district'=>$dis,'sector'=>$sec,'category'=>$cat]);
 
@@ -61,9 +71,9 @@ Route::post('/search',function(Request $request){
 
 Route::get('/categorylist/{id}',function($id){
  
-	$category = s_listing::where('category_id',$id)->get();
+	$category = Alldata::where('category_id',$id)->get();
 
-	return $category;
+	return view('category')->with('service',$category);
 	
 });
 
@@ -84,7 +94,7 @@ Route::get('/profile',function(){
 Route::get('/', 'PostsController@home');
 
 
-Route::resource('posts','PagesController');
+// Route::resource('posts','PagesController');
 
 Route::get('/dashboard',function(){
 
@@ -100,10 +110,17 @@ Route::get('/single/{id}',function($id){
 	$cat = category::all();
 	$user = App\User::all();
 
-    $service = s_listing::find($id);
+    $service = Alldata::find($id);
 
     return view('single_listing_2')->with(['service'=>$service,'district'=>$dis, 'sector'=>$sec,'province'=>$pro, 'user'=>$user, 'category'=>$cat]);
 });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+Route::get('/home','HomeController@index')->middleware('verified'); // route for login
+
+
+Route::post('/dynamicdata.fetch','dynamicdata@fetch')->name('dynamicdata.fetch');
+
+

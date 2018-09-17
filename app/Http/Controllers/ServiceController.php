@@ -8,6 +8,7 @@ use App\district;
 use App\province;
 use App\sector;
 use App\s_listing;
+use App\Alldata;
 
 class ServiceController extends Controller
 {
@@ -24,7 +25,7 @@ class ServiceController extends Controller
         $cat = category::all();
         $user = Auth()->User()->id;
 
-        $service = s_listing::where('user_id',$user)->get();
+        $service = Alldata::where('user_id',$user)->where('type', 2 )->get();
         return view('service.index')->with(['service'=>$service,'district'=>$dis,'province'=>$pro, 'sector'=>$sector, 'category'=>$cat]);
     }
 
@@ -61,29 +62,30 @@ class ServiceController extends Controller
 
         if ($IdDistrict[0]['province_id'] == $request->input("province") && $IdSector[0]['district_id'] == $request->input("district") ) {
 
-            $service = new s_listing;
-            $service->service_title = $request->input('name');
-            $service->service_desc = $request->input('desc');
-            $service->employment_type = $request->input('employment');
-            $service->sector_id = $request->input('sector');
-            $service->district_id = $request->input('district');
-            $service->province_id = $request->input('province');
-            $service->category_id = $request->input('category');
-            $service->language = $request->input("language");
-            $service->email = $request->input("email");
-            $service->phone = $request->input("phone");
-            $service->user_id = Auth()->user()->id;
+                    $service = new Alldata;
+                    $service->title = $request->input('name');
+                    $service->description = $request->input('desc');
+                    $service->employment_type = $request->input('employment');
+                    $service->sector_id = $request->input('sector');
+                    $service->district_id = $request->input('district');
+                    $service->province_id = $request->input('province');
+                    $service->category_id = $request->input('category');
+                    $service->language = $request->input("language");
+                    $service->email = $request->input("email");
+                    $service->phone = $request->input("phone");
+                    $service->user_id = Auth()->user()->id;
+                    $service->type = 2;
 
-            if($service->save()){
-                return redirect('service');
-            }else{
-                return redirect()->intended('/offer/create');
-            }
+                    if($service->save()){
+                        return redirect('service');
+                    }else{
+                        return redirect()->intended('/offer/create');
+                    }
+
+        }else{
+           return redirect()->intended('/offer/create')->with('errors','Invalid Location');
         }
-
-    //     // }else{
-    //     //    return redirect()->intended('/offer/create')->with('errors','Invalid Location');
-    //     // }
+        
     }
 
     /**

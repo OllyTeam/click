@@ -7,6 +7,7 @@ use App\category;
 use App\district;
 use App\s_listing;
 use App\User;
+use App\Alldata;
 class PostsController extends Controller
 {
     //
@@ -17,14 +18,11 @@ class PostsController extends Controller
 
         $district = district::all();
 
-        $service = s_listing::all();
+        $service = Alldata::orderBy('created_at','ASC')->get();
 
         $user = User::all();
 
-        $data = array(
-            ['category' => $category ],
-            ['district' => $district ],
-            ['service' => $service ]);
+        //return $service;
 
         return view('index',['category'=>$category,'district'=>$district,'service'=>$service,'user'=>$user]);
     }

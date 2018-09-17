@@ -10,7 +10,7 @@ use App\province;
 use App\sector;
 use App\joboffer;
 use App\category;
-use App\all;
+use App\Alldata;
 
 class OfferController extends Controller
 {
@@ -25,7 +25,7 @@ class OfferController extends Controller
         $pro = province::all();
         $cat = category::all();
         $id = Auth()->user()->id;
-        $offer = joboffer::where('user_id','=',$id)->get();
+        $offer = Alldata::where('user_id','=',$id)->where('type',1)->get();
         return view('offer.index')->with(['offer'=>$offer,'category'=>$cat,'district'=>$dis,'province'=>$pro]);
     }
 
@@ -67,19 +67,20 @@ class OfferController extends Controller
         if ($IdDistrict[0]['province_id'] == $request->input("province") && $IdSector[0]['district_id'] == $request->input("district") ) {
 
 
-            $job = new joboffer;
+            $job = new Alldata;
             $job->offername = $request->input('name');
-            $job->offertitle = $request->input('title');
+            $job->title = $request->input('title');
             $job->description = $request->input('description');
             $job->compensation = $request->input('compensation');
             $job->sector_id = $request->input('sector');
             $job->district_id = $request->input('district');
             $job->province_id = $request->input('province');
             $job->category_id = $request->input('category');
-            $job->languages = $request->input("language");
+            $job->language = $request->input("language");
             $job->email = $request->input("email");
             $job->phone = $request->input("phone");
             $job->user_id = Auth()->user()->id;
+            $job->type = 1 ;
 
 
             if($job->save()){

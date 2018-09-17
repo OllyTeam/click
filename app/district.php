@@ -13,15 +13,15 @@ class district extends Model
 
 
 
-    public function s_listing(){
-        return $this->hasOne('App\s_listing');
+    public function Alldata(){
+        return $this->hasOne('App\alldata');
     }
 
     public function sectors(){
         return $this->hasMany('App\sector');
     }
 
-    public function provinces(){
+    public function province(){
         return $this->belongsTo('App\province');
     }
     

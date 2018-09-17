@@ -32,7 +32,9 @@ class HomeController extends Controller
     {
         $user = User::where('status','!=','1')->count();
         if( Auth()->User()->status == 1 ){
-            return view('dashboard')->with('user', $user);
+
+             return view('dashboard')->with('user', $user);
+
         }else{
 
             $dis = district::all();

@@ -37,7 +37,7 @@
                                 <a class="nav-link icon" href="{{url('/service')}}">
                                     <i class="fa fa-star"></i>My service listings
                                 </a>
-                                <a class="nav-link icon" href="change-password.html">
+                                <a class="nav-link icon" href="#">
                                     <i class="fa fa-recycle"></i>My reviews 
                                 </a>
                                 <a class="nav-link icon" href="#">
@@ -62,11 +62,7 @@
                                         <div class="image">
                                             <h3>
                                                 <a href="#" class="tag category">
-                                                    @foreach($category as $item2)
-                                                     @if($item->category_id == $item2->id)
-                                                        {{$item2->name}}
-                                                     @endif   
-                                                    @endforeach
+                                                        {{$item->category->name}}
                                                 </a>
                                                 <a href="{{url('/offer',$item->id)}}" class="title">{{$item->offertitle}}</a>
                                                 <span class="tag">Offer</span>
@@ -78,17 +74,7 @@
                                         <!--end image-->
                                         <h4 class="">
                                             <a style="text-decoration:none;">
-                                                @foreach($district as $item2)
-                                                    @if($item->district_id == $item2->id)
-                                                        {{$item2->name}}
-                                                    @endif
-                                                @endforeach
-                                                    ,
-                                                @foreach($province as $item2)
-                                                    @if($item->province_id == $item2->id)
-                                                        {{$item2->name}}
-                                                    @endif
-                                                @endforeach
+                                                {{$item->district->name}},{{$item->province->name}}
                                             </a>
                                         </h4>
                                         <div class="admin-controls">

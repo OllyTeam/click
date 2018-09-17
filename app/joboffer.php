@@ -23,4 +23,9 @@ class joboffer extends Model
     public function province(){
     	return $this->belongsTo('App\Province');
     }
+
+    public function s_listings()
+    {
+        return $this->hasMany('App\s_listing');
+    }
 }
