@@ -109,30 +109,7 @@
                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                      <span class="navbar-toggler-icon"></span>
                      </button>
-                     <div class="collapse navbar-collapse" id="navbar">
-                        <!--Main navigation list-->
-                        <ul class="navbar-nav">
-                           <li class="nav-item active">
-                              <a class="nav-link" href=" {{url('/')}}">Home</a>
-                           </li>
-                           <li class="nav-item has-child">
-                              <a class="nav-link" href="#">Categories</a>
-                           </li>
-                           <li class="nav-item has-child">
-                              <a class="nav-link" href="#">How it works</a>
-                           </li>
-                           <li class="nav-item has-child">
-                              <a class="nav-link" href="#">About Us</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="{{url('contact')}}">Contact</a>
-                           </li>
-                           <li class="nav-item">
-                              <a href="{{url('submit')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Ad</a>
-                           </li>
-                        </ul>
-                        <!--Main navigation list-->
-                     </div>
+                     
                      <!--end navbar-collapse-->
                   </nav>
                   <!--end navbar-->
@@ -140,7 +117,7 @@
                <!--end container-->
             </div>
             <!--============ End Main Navigation ================================================================-->
-            {!! Form::open([ 'action' =>'PagesController@store' , 'method'=>'POST' ]) !!}
+            <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
             <div class="form-group row">
                <label for="fname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
                <div class="col-md-6">
@@ -192,8 +169,8 @@
                Male
                </label>
                <label class="framed">
-               <input type="radio" name="type" value="1" required>
-               Male
+               <input type="radio" name="type" value="2" required>
+               Female
                </label>
                <div class="col-md-6">
                   @if ($errors->has('gender'))
@@ -261,9 +238,10 @@
                   <button type="submit" class="btn btn-primary">
                   {{ __('Register') }}
                   </button>
+                  {{ csrf_field() }}
                </div>
             </div>
-            {!! Form::close() !!}
+{!! Form::close() !!}
          </div>
       </div>
       

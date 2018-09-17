@@ -40,7 +40,7 @@
                                 <a class="nav-link icon" href="change-password.html">
                                     <i class="fa fa-recycle"></i>My reviews 
                                 </a>
-                                <a class="nav-link icon" href="{{route('logout')}}">
+                                <a class="nav-link icon" href="#">
                                     <i class="fa fa-check"></i>Logout
                                 </a>
                             </nav>
@@ -61,8 +61,14 @@
                                     <div class="wrapper">
                                         <div class="image">
                                             <h3>
-                                                <a href="#" class="tag category">{{$item->category_id}}</a>
-                                                <a href="single-listing-1.html" class="title">{{$item->offertitle}}</a>
+                                                <a href="#" class="tag category">
+                                                    @foreach($category as $item2)
+                                                     @if($item->category_id == $item2->id)
+                                                        {{$item2->name}}
+                                                     @endif   
+                                                    @endforeach
+                                                </a>
+                                                <a href="{{url('/offer',$item->id)}}" class="title">{{$item->offertitle}}</a>
                                                 <span class="tag">Offer</span>
                                             </h3>
                                             <a href="single-listing-1.html" class="image-wrapper background-image">

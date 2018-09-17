@@ -31,7 +31,7 @@
                                 <a class="nav-link active icon" href="{{url('offer')}}">
                                     <i class="fa fa-user"></i>My job offers 
                                 </a>
-                                <a class="nav-link icon" href="bookmarks.html">
+                                <a class="nav-link icon" href="{{url('/service')}}">
                                     <i class="fa fa-star"></i>My service listings
                                 </a>
                                 <a class="nav-link icon" href="change-password.html">

@@ -22,8 +22,9 @@ class ServiceController extends Controller
         $pro = province::all();
         $sector = sector::all();
         $cat = category::all();
+        $user = Auth()->User()->id;
 
-        $service = s_listing::all();
+        $service = s_listing::where('user_id',$user)->get();
         return view('service.index')->with(['service'=>$service,'district'=>$dis,'province'=>$pro, 'sector'=>$sector, 'category'=>$cat]);
     }
 

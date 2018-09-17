@@ -94,10 +94,14 @@
    <section class="block">
       <div class="container">
          <h2>Categories</h2>
-                                <dl class="columns-3">
+                                <dl class="columns-3 categories-list clearfix">
                                 @foreach($category as $item)    
                                  <dt><a href="{{url('categorylist',$item->id)}}">{{$item->name}}</a></dt>
-                                 <dd><img src="assets/icons/category-real-estate-b.png" width="" alt=""></dd>
+                                 <dd>
+                                    <i class="category-icon">
+                                    <img src="assets/icons/category-real-estate-b.png" width="" alt="">
+                                 </i>
+                                 </dd>
                                 @endforeach    
                                 </dl
       </div>
@@ -109,7 +113,7 @@
    <section class="block">
       <div class="container">
          <div class="row flex-column-reverse flex-md-row">
-            <div class="col-md-9">
+            <div class="col-md-9" style="min-height: 1000px;">
                <!--============SectionTitle===================================================================-->
                <div class="section-title clearfix">
                      <h1>Recent Ads</h1>
@@ -177,16 +181,14 @@
             <!--end col-md-9-->
             <div class="col-md-3">
                <!--============ Side Bar ===============================================================-->
-               <!-- <aside class="sidebar">
+               <aside class="sidebar">
                   <section>
                      <h2></h2>
                      <img src="assets/img/banner.jpg">
                      <hr>
                      <img src="assets/img/banner.jpg">
-                     <hr>
-                     <img src="assets/img/banner.jpg">
                   </section>
-               </aside> -->
+               </aside>
                <!--============ End Side Bar ===========================================================-->
             </div>
             <!--end col-md-3-->

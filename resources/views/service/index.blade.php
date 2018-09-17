@@ -40,7 +40,7 @@
                                 <a class="nav-link icon" href="#">
                                     <i class="fa fa-recycle"></i>My reviews 
                                 </a>
-                                <a class="nav-link icon" href="{{route('logout')}}">
+                                <a class="nav-link icon" href="#">
                                     <i class="fa fa-check"></i>Logout
                                 </a>
                             </nav>
@@ -68,16 +68,15 @@
                                                     @endif
                                                 @endforeach
                                                 </a>
-                                                <a href="single-listing-1.html" class="title">{{$item->service_title}}</a>
+                                                <a href="{{url('/service',$item->id)}}" class="title">{{$item->service_title}}</a>
                                             </h3>
-                                            <a href="single-listing-1.html" class="image-wrapper background-image">
+                                            <a href="#" class="image-wrapper background-image">
                                                 <img src="assets/img/image-01.jpg" alt="">
                                             </a>
                                         </div>
                                         <!--end image-->
                                         <h4 class="">
-                                            <a  href="{{url('/service',$item->id)}}">
-
+                                            <a  href="#">
                                                 @foreach($district as $item2)
                                                     @if( $item->district_id == $item2->id )
                                                        {{$item2->name}}

@@ -20,6 +20,9 @@ use App\sector;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::resource('/offer','OfferController');
+
+
 Route::post('/search',function(Request $request){
 
 	$title = '%%'.$request->input('keyword').'%%';
